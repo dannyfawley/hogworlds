@@ -1,8 +1,11 @@
 
 // =========================================
-// HOGWORLDS PATHFINDER V1.4
-// UPDATED NAVIGATION ROUTES
+// HOGWORLDS PATHFINDER V1.5
+// WORLD EXPANSION
 // =========================================
+
+
+// สร้างตำแหน่งไฟล์ภาพอัตโนมัติ
 
 function getImages(folder, files) {
     return files.map(file => `images/${folder}/${file}`);
@@ -103,7 +106,7 @@ const routes = {
     },
 
 
-    // 06 เรือนกระจก
+    // 06 เรือนกระจกสมุนไพร
 
     herbology: {
         name: "เรือนกระจก (สมุนไพร)",
@@ -188,7 +191,7 @@ const routes = {
     },
 
 
-    // 11 ห้องเรียนดาราศาสตร์
+    // 11 ห้องเรียนดาราศาสตร์ — UPDATED
 
     astronomy: {
         name: "ห้องเรียนดาราศาสตร์",
@@ -197,10 +200,11 @@ const routes = {
         category: "classroom",
 
         images: getImages("astronomy", [
-            "40.jpg",
-            "42.jpg",
-            "43.jpg",
-            "44.jpg"
+            "69.jpg",
+            "70.jpg",
+            "71.jpg",
+            "72.jpg",
+            "73.jpg"
         ])
     },
 
@@ -224,7 +228,7 @@ const routes = {
 
 
     // =====================================
-    // หมวดสถานที่ทั่วไป
+    // หมวดสถานที่ทั่วไป LOCATIONS
     // =====================================
 
 
@@ -309,7 +313,7 @@ const routes = {
     },
 
 
-    // 18 หอดูดาว — UPDATED
+    // 18 หอดูดาว
 
     observatory: {
         name: "หอดูดาว",
@@ -323,6 +327,57 @@ const routes = {
             "3.jpg",
             "6.jpg",
             "7.jpg"
+        ])
+    },
+
+
+    // 19 สนามซ้อมควิดดิช — NEW
+
+    quidditch_training: {
+        name: "สนามซ้อมควิดดิช",
+        english: "Quidditch Training Ground",
+        icon: "🏆",
+        category: "location",
+
+        images: getImages("quidditch_training", [
+            "58.jpg",
+            "59.jpg"
+        ])
+    },
+
+
+    // 20 ลานดาราศาสตร์ — NEW
+
+    astronomy_yard: {
+        name: "ลานดาราศาสตร์",
+        english: "Astronomy Courtyard",
+        icon: "🌠",
+        category: "location",
+
+        images: getImages("astronomy_yard", [
+            "40.jpg",
+            "42.jpg",
+            "43.jpg",
+            "44.jpg"
+        ])
+    },
+
+
+    // 21 ห้องบำบัด — NEW
+
+    therapy: {
+        name: "ห้องบำบัด",
+        english: "Therapy Room",
+        icon: "🩹",
+        category: "location",
+
+        images: getImages("therapy", [
+            "60.jpg",
+            "61.jpg",
+            "62.jpg",
+            "63.jpg",
+            "64.jpg",
+            "65.jpg"
         ])
     }
 

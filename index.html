@@ -2,33 +2,46 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>HOGWORLDS PATHFINDER</title>
 
-     
-<meta name="description" content="แผนที่เดินทางของ Danny ที่จะพาคุณไปเรียนได้ถูกทาง">
+    <meta name="description"
+          content="แผนที่เดินทางของ Danny ที่จะพาคุณไปเรียนได้ถูกทาง">
 
-<meta property="og:title" content="HOGWORLDS PATHFINDER">
+    <meta property="og:title"
+          content="HOGWORLDS PATHFINDER">
 
-<meta property="og:description" content="แผนที่เดินทางของ Danny ที่จะพาคุณไปเรียนได้ถูกทาง">
+    <meta property="og:description"
+          content="แผนที่เดินทางของ Danny ที่จะพาคุณไปเรียนได้ถูกทาง">
 
-<meta property="og:url" content="https://dannyfawley.github.io/hogworlds/">
+    <meta property="og:url"
+          content="https://dannyfawley.github.io/hogworlds/">
 
-<meta property="og:type" content="website">
-
+    <meta property="og:type"
+          content="website">
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
     <header>
+
         <div class="crest">✦</div>
+
         <h1>HOGWORLDS</h1>
-        <div class="subtitle">P A T H F I N D E R</div>
+
+        <div class="subtitle">
+            P A T H F I N D E R
+        </div>
+
         <p>แผนที่เดินทางของ DANNY</p>
+
     </header>
 
     <main>
@@ -43,6 +56,7 @@
                 เลือกสถานที่ที่คุณต้องการเดินทางไป
             </p>
 
+
             <!-- ระบบสลับหมวดหมู่ -->
 
             <div class="category-tabs">
@@ -54,9 +68,11 @@
                     aria-pressed="true">
 
                     📖 ห้องเรียน
+
                     <small>CLASSROOMS</small>
 
                 </button>
+
 
                 <button
                     id="locationTab"
@@ -65,11 +81,13 @@
                     aria-pressed="false">
 
                     📍 สถานที่ทั่วไป
+
                     <small>LOCATIONS</small>
 
                 </button>
 
             </div>
+
 
             <!-- การ์ดสถานที่ -->
 
@@ -83,58 +101,88 @@
 
         <section id="navigation" hidden>
 
-            <button class="home-button" onclick="goHome()">
+            <button class="home-button"
+                    onclick="goHome()">
+
                 ← กลับหน้าหลัก
+
             </button>
+
 
             <h2 id="roomName"></h2>
 
             <p id="roomEnglish"></p>
 
+
             <div class="progress-info">
+
                 <span id="stepCounter"></span>
+
                 <span id="percentage"></span>
+
             </div>
+
 
             <div class="progress-track">
+
                 <div id="progressBar"></div>
+
             </div>
 
+
             <div class="image-frame">
-                <img id="routeImage" alt="ภาพเส้นทางจากในเกม">
+
+                <img id="routeImage"
+                     alt="ภาพเส้นทางจากในเกม">
+
             </div>
+
 
             <p id="instruction"></p>
 
+
             <div class="navigation-buttons">
 
-                <button id="prevButton" onclick="previousStep()">
+                <button id="prevButton"
+                        onclick="previousStep()">
+
                     ← ย้อนกลับ
+
                 </button>
 
-                <button id="nextButton" onclick="nextStep()">
+
+                <button id="nextButton"
+                        onclick="nextStep()">
+
                     เดินทางต่อ →
+
                 </button>
 
             </div>
 
-            <button class="restart-button" onclick="restartRoute()">
+
+            <button class="restart-button"
+                    onclick="restartRoute()">
+
                 ↻ เริ่มเส้นทางใหม่
+
             </button>
 
         </section>
 
     </main>
 
+
     <footer>
 
         <p>✦ HOGWORLDS PATHFINDER ✦</p>
 
         <small>
-            Interactive World Navigation · V1.4
+            Interactive World Navigation · V1.5
         </small>
 
     </footer>
+
 
     <script src="script.js"></script>
 
