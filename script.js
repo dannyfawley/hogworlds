@@ -163,7 +163,7 @@ function renderRooms() {
             <span class="room-icon">${room.icon}</span>
             <h3>${room.name}</h3>
             <span>${room.english}</span>
-            <small>${room.images.length} จุดนำทาง</small>
+            
         `;
 
         button.addEventListener("click", () => {
