@@ -94,10 +94,7 @@ h2 {
 }
 
 #roomSummary {
-    text-align: center;
-    color: var(--gold);
-    font-size: 13px;
-    margin: 20px 0;
+    display: none;
 }
 
 
