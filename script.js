@@ -4,9 +4,6 @@
 // UPDATED NAVIGATION ROUTES
 // =========================================
 
-
-// สร้างตำแหน่งไฟล์ภาพอัตโนมัติ
-
 function getImages(folder, files) {
     return files.map(file => `images/${folder}/${file}`);
 }
@@ -54,7 +51,7 @@ const routes = {
     },
 
 
-    // 03 ห้องคาถา — UPDATED
+    // 03 ห้องคาถา
 
     charms: {
         name: "ห้องคาถา",
@@ -71,7 +68,7 @@ const routes = {
     },
 
 
-    // 04 ห้องวิชาแปลงกาย — UPDATED
+    // 04 ห้องวิชาแปลงกาย
 
     transfiguration: {
         name: "ห้องวิชาแปลงกาย",
@@ -106,7 +103,7 @@ const routes = {
     },
 
 
-    // 06 เรือนกระจก — UPDATED
+    // 06 เรือนกระจก
 
     herbology: {
         name: "เรือนกระจก (สมุนไพร)",
@@ -262,7 +259,7 @@ const routes = {
     },
 
 
-    // 15 สวนมิสเฟลอร์ — UPDATED
+    // 15 สวนมิสเฟลอร์
 
     garden: {
         name: "สวนมิสเฟลอร์",
@@ -296,7 +293,7 @@ const routes = {
     },
 
 
-    // 17 หอนกฮูก — UPDATED
+    // 17 หอนกฮูก
 
     owlery: {
         name: "หอนกฮูก",
@@ -324,8 +321,8 @@ const routes = {
             "1.jpg",
             "2.jpg",
             "3.jpg",
-            "4.jpg",
-            "5.jpg"
+            "6.jpg",
+            "7.jpg"
         ])
     }
 
@@ -342,7 +339,7 @@ let currentStep = 0;
 
 
 // =========================================
-// ระบบสลับหมวดหมู่
+// ระบบสลับหมวดหมู่ TAB
 // =========================================
 
 function selectCategory(category) {
