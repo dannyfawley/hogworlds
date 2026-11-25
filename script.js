@@ -1,7 +1,7 @@
 
 // =========================================
 // HOGWORLDS PATHFINDER V1.4
-// WORLD EXPANSION
+// UPDATED NAVIGATION ROUTES
 // =========================================
 
 
@@ -13,7 +13,7 @@ function getImages(folder, files) {
 
 
 // =========================================
-// หมวดห้องเรียน CLASSROOMS
+// ข้อมูลสถานที่ทั้งหมด
 // =========================================
 
 const routes = {
@@ -54,7 +54,7 @@ const routes = {
     },
 
 
-    // 03 ห้องคาถา
+    // 03 ห้องคาถา — UPDATED
 
     charms: {
         name: "ห้องคาถา",
@@ -65,13 +65,13 @@ const routes = {
         images: getImages("charms", [
             "1.jpg",
             "2.jpg",
-            "10.png",
-            "11.png"
+            "10.jpg",
+            "11.jpg"
         ])
     },
 
 
-    // 04 ห้องวิชาแปลงกาย
+    // 04 ห้องวิชาแปลงกาย — UPDATED
 
     transfiguration: {
         name: "ห้องวิชาแปลงกาย",
@@ -82,8 +82,9 @@ const routes = {
         images: getImages("transfiguration", [
             "1.jpg",
             "2.jpg",
-            "10.png",
-            "12.png"
+            "10.jpg",
+            "12.jpg",
+            "13.jpg"
         ])
     },
 
@@ -105,7 +106,7 @@ const routes = {
     },
 
 
-    // 06 เรือนกระจกสมุนไพร
+    // 06 เรือนกระจก — UPDATED
 
     herbology: {
         name: "เรือนกระจก (สมุนไพร)",
@@ -114,6 +115,7 @@ const routes = {
         category: "classroom",
 
         images: getImages("herbology", [
+            "24.jpg",
             "25.jpg",
             "26.jpg"
         ])
@@ -225,7 +227,7 @@ const routes = {
 
 
     // =====================================
-    // หมวดสถานที่ทั่วไป LOCATIONS
+    // หมวดสถานที่ทั่วไป
     // =====================================
 
 
@@ -260,7 +262,7 @@ const routes = {
     },
 
 
-    // 15 สวนมิสเฟลอร์
+    // 15 สวนมิสเฟลอร์ — UPDATED
 
     garden: {
         name: "สวนมิสเฟลอร์",
@@ -269,8 +271,10 @@ const routes = {
         category: "location",
 
         images: getImages("garden", [
-            "47.jpg",
-            "48.jpg"
+            "49.jpg",
+            "50.jpg",
+            "51.jpg",
+            "52.jpg"
         ])
     },
 
@@ -292,7 +296,7 @@ const routes = {
     },
 
 
-    // 17 หอนกฮูก
+    // 17 หอนกฮูก — UPDATED
 
     owlery: {
         name: "หอนกฮูก",
@@ -308,7 +312,7 @@ const routes = {
     },
 
 
-    // 18 หอดูดาว
+    // 18 หอดูดาว — UPDATED
 
     observatory: {
         name: "หอดูดาว",
@@ -319,9 +323,9 @@ const routes = {
         images: getImages("observatory", [
             "1.jpg",
             "2.jpg",
-            "10.png",
-            "45.jpg",
-            "46.jpg"
+            "3.jpg",
+            "4.jpg",
+            "5.jpg"
         ])
     }
 
@@ -338,13 +342,15 @@ let currentStep = 0;
 
 
 // =========================================
-// สลับหมวดหมู่ TAB
+// ระบบสลับหมวดหมู่
 // =========================================
 
 function selectCategory(category) {
 
-    if (category !== "classroom" &&
-        category !== "location") return;
+    if (
+        category !== "classroom" &&
+        category !== "location"
+    ) return;
 
     currentCategory = category;
 
@@ -424,8 +430,10 @@ function renderRooms() {
 function startRoute(room) {
 
     if (!routes[room] || !routes[room].images.length) {
+
         alert("ยังไม่มีข้อมูลเส้นทาง");
         return;
+
     }
 
     currentRoute = routes[room];
@@ -472,20 +480,20 @@ function showStep() {
         document.getElementById("nextButton");
 
 
-    // ตรวจสอบกรณีภาพไม่สามารถโหลดได้
+    // ตรวจสอบข้อผิดพลาดในการโหลดภาพ
 
-    routeImage.onerror = function() {
+    routeImage.onerror = function () {
+
+        if (!currentRoute) return;
 
         instruction.textContent =
-            "ไม่สามารถโหลดภาพได้ กรุณาตรวจสอบไฟล์ " +
-            currentRoute?.images[currentStep];
+            "ไม่สามารถโหลดภาพได้: " +
+            currentRoute.images[currentStep];
 
     };
 
 
-    // แสดงภาพปัจจุบัน
-
-    routeImage.src = currentRoute.images[currentStep];
+    // แสดงข้อมูลเส้นทาง
 
     routeImage.alt =
         `${currentRoute.name} - จุดนำทางที่ ${currentStep + 1}`;
@@ -503,7 +511,7 @@ function showStep() {
         currentStep === 0;
 
 
-    // ตรวจสอบจุดหมายปลายทาง
+    // เมื่อถึงจุดหมายปลายทาง
 
     if (currentStep === total - 1) {
 
@@ -522,6 +530,12 @@ function showStep() {
             "เดินทางต่อ →";
 
     }
+
+
+    // โหลดภาพปัจจุบัน
+
+    routeImage.src =
+        currentRoute.images[currentStep];
 
 
     // โหลดภาพถัดไปล่วงหน้า
@@ -618,9 +632,11 @@ document.addEventListener("keydown", event => {
 
     if (!currentRoute) return;
 
-    if (event.altKey ||
+    if (
+        event.altKey ||
         event.ctrlKey ||
-        event.metaKey) return;
+        event.metaKey
+    ) return;
 
     if (event.key === "ArrowRight") {
 
