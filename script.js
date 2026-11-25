@@ -1,150 +1,386 @@
 
 // =========================================
-// HOGWORLD PATHFINDER V1.3
-// ข้อมูลห้องเรียนทั้งหมด
+// HOGWORLDS PATHFINDER V1.4
+// WORLD EXPANSION
+// =========================================
+
+
+// สร้างตำแหน่งไฟล์ภาพอัตโนมัติ
+
+function getImages(folder, files) {
+    return files.map(file => `images/${folder}/${file}`);
+}
+
+
+// =========================================
+// หมวดห้องเรียน CLASSROOMS
 // =========================================
 
 const routes = {
 
     // 01 ห้องปรุงยา
+
     potions: {
         name: "ห้องปรุงยา",
         english: "Potions Classroom",
         icon: "⚗️",
+        category: "classroom",
 
-        images: [
-            "images/potions/1.jpg",
-            "images/potions/3.png",
-            "images/potions/4.png",
-            "images/potions/5.png",
-            "images/potions/6.png"
-        ]
+        images: getImages("potions", [
+            "1.jpg",
+            "3.png",
+            "4.png",
+            "5.png",
+            "6.png"
+        ])
     },
 
+
     // 02 ห้องป้องกันตัวจากศาสตร์มืด
+
     dada: {
         name: "ห้องป้องกันตัวจากศาสตร์มืด",
         english: "Defence Against the Dark Arts",
         icon: "🛡️",
+        category: "classroom",
 
-        images: [
-            "images/dada/1.jpg",
-            "images/dada/2.jpg",
-            "images/dada/7.png",
-            "images/dada/8.png",
-            "images/dada/9.png"
-        ]
+        images: getImages("dada", [
+            "1.jpg",
+            "2.jpg",
+            "7.png",
+            "8.png",
+            "9.png"
+        ])
     },
 
+
     // 03 ห้องคาถา
+
     charms: {
         name: "ห้องคาถา",
         english: "Charms Classroom",
         icon: "🪄",
+        category: "classroom",
 
-        images: [
-            "images/charms/1.jpg",
-            "images/charms/2.jpg",
-            "images/charms/10.png",
-            "images/charms/11.png"
-        ]
+        images: getImages("charms", [
+            "1.jpg",
+            "2.jpg",
+            "10.png",
+            "11.png"
+        ])
     },
 
+
     // 04 ห้องวิชาแปลงกาย
+
     transfiguration: {
         name: "ห้องวิชาแปลงกาย",
         english: "Transfiguration Classroom",
         icon: "🦋",
+        category: "classroom",
 
-        images: [
-            "images/transfiguration/1.jpg",
-            "images/transfiguration/2.jpg",
-            "images/transfiguration/10.png",
-            "images/transfiguration/12.png"
-        ]
+        images: getImages("transfiguration", [
+            "1.jpg",
+            "2.jpg",
+            "10.png",
+            "12.png"
+        ])
     },
 
+
     // 05 ห้องวิชามักเกิ้ล
+
     muggle: {
         name: "ห้องวิชามักเกิ้ล",
         english: "Muggle Studies Classroom",
         icon: "🔌",
+        category: "classroom",
 
-        images: [
-            "images/muggle/1.jpg",
-            "images/muggle/2.jpg",
-            "images/muggle/22.jpg",
-            "images/muggle/24.jpg"
-        ]
+        images: getImages("muggle", [
+            "1.jpg",
+            "2.jpg",
+            "22.jpg",
+            "24.jpg"
+        ])
     },
 
+
     // 06 เรือนกระจกสมุนไพร
+
     herbology: {
         name: "เรือนกระจก (สมุนไพร)",
         english: "Herbology Greenhouse",
         icon: "🌿",
+        category: "classroom",
 
-        images: [
-            "images/herbology/25.jpg",
-            "images/herbology/26.jpg"
-        ]
+        images: getImages("herbology", [
+            "25.jpg",
+            "26.jpg"
+        ])
     },
 
+
     // 07 ห้องเรียนพยากรณ์
+
     divination: {
         name: "ห้องเรียนพยากรณ์",
         english: "Divination Classroom",
         icon: "🔮",
+        category: "classroom",
 
-        images: [
-            "images/divination/1.jpg",
-            "images/divination/2.jpg",
-            "images/divination/22.jpg",
-            "images/divination/23.jpg"
-        ]
+        images: getImages("divination", [
+            "1.jpg",
+            "2.jpg",
+            "22.jpg",
+            "23.jpg"
+        ])
     },
 
+
     // 08 ห้องเล่นแร่แปรธาตุ
+
     alchemy: {
         name: "ห้องเล่นแร่แปรธาตุ",
         english: "Alchemy Classroom",
         icon: "⚖️",
+        category: "classroom",
 
-        images: [
-            "images/alchemy/1.jpg",
-            "images/alchemy/2.jpg",
-            "images/alchemy/22.jpg",
-            "images/alchemy/28.jpg"
-        ]
+        images: getImages("alchemy", [
+            "1.jpg",
+            "2.jpg",
+            "22.jpg",
+            "28.jpg"
+        ])
     },
 
+
     // 09 ห้องเต้นรำ
+
     dance: {
         name: "ห้องเต้นรำ",
         english: "Dance Hall",
         icon: "💃",
+        category: "classroom",
 
-        images: [
-            "images/dance/1.jpg",
-            "images/dance/2.jpg",
-            "images/dance/22.jpg",
-            "images/dance/29.jpg"
-        ]
+        images: getImages("dance", [
+            "1.jpg",
+            "2.jpg",
+            "22.jpg",
+            "29.jpg"
+        ])
+    },
+
+
+    // 10 ห้องเรียนการบิน
+
+    flying: {
+        name: "ห้องเรียนการบิน",
+        english: "Flying Classroom",
+        icon: "🧹",
+        category: "classroom",
+
+        images: getImages("flying", [
+            "30.jpg",
+            "31.jpg",
+            "34.jpg",
+            "35.jpg",
+            "37.jpg"
+        ])
+    },
+
+
+    // 11 ห้องเรียนดาราศาสตร์
+
+    astronomy: {
+        name: "ห้องเรียนดาราศาสตร์",
+        english: "Astronomy Classroom",
+        icon: "🌌",
+        category: "classroom",
+
+        images: getImages("astronomy", [
+            "40.jpg",
+            "42.jpg",
+            "43.jpg",
+            "44.jpg"
+        ])
+    },
+
+
+    // 12 ลานเรียนแปลงกาย
+
+    transfiguration_yard: {
+        name: "ลานเรียนแปลงกาย",
+        english: "Transfiguration Courtyard",
+        icon: "🦋",
+        category: "classroom",
+
+        images: getImages("transfiguration_yard", [
+            "30.jpg",
+            "31.jpg",
+            "34.jpg",
+            "35.jpg",
+            "36.jpg"
+        ])
+    },
+
+
+    // =====================================
+    // หมวดสถานที่ทั่วไป LOCATIONS
+    // =====================================
+
+
+    // 13 ลานหินข้างปราสาท
+
+    courtyard: {
+        name: "ลานหินข้างปราสาท",
+        english: "Castle Courtyard",
+        icon: "🏰",
+        category: "location",
+
+        images: getImages("courtyard", [
+            "31.jpg",
+            "38.jpg",
+            "39.jpg"
+        ])
+    },
+
+
+    // 14 ลานหินหลังหอนาฬิกา
+
+    clocktower: {
+        name: "ลานหินหลังหอนาฬิกา",
+        english: "Clock Tower Courtyard",
+        icon: "🕰️",
+        category: "location",
+
+        images: getImages("clocktower", [
+            "40.jpg",
+            "41.jpg"
+        ])
+    },
+
+
+    // 15 สวนมิสเฟลอร์
+
+    garden: {
+        name: "สวนมิสเฟลอร์",
+        english: "Ms. Fleurs' Garden",
+        icon: "🌷",
+        category: "location",
+
+        images: getImages("garden", [
+            "47.jpg",
+            "48.jpg"
+        ])
+    },
+
+
+    // 16 คอกสัตว์วิเศษ
+
+    beasts: {
+        name: "คอกสัตว์วิเศษ",
+        english: "Magical Beasts Stable",
+        icon: "🐉",
+        category: "location",
+
+        images: getImages("beasts", [
+            "30.jpg",
+            "31.jpg",
+            "32.jpg",
+            "33.jpg"
+        ])
+    },
+
+
+    // 17 หอนกฮูก
+
+    owlery: {
+        name: "หอนกฮูก",
+        english: "Owlery",
+        icon: "🦉",
+        category: "location",
+
+        images: getImages("owlery", [
+            "40.jpg",
+            "42.jpg",
+            "43.jpg"
+        ])
+    },
+
+
+    // 18 หอดูดาว
+
+    observatory: {
+        name: "หอดูดาว",
+        english: "Observatory",
+        icon: "🔭",
+        category: "location",
+
+        images: getImages("observatory", [
+            "1.jpg",
+            "2.jpg",
+            "10.png",
+            "45.jpg",
+            "46.jpg"
+        ])
     }
 
 };
 
 
 // =========================================
-// ตัวแปรควบคุมเส้นทาง
+// ตัวแปรควบคุมระบบ
 // =========================================
 
+let currentCategory = "classroom";
 let currentRoute = null;
 let currentStep = 0;
 
 
 // =========================================
-// สร้างปุ่มห้องเรียนอัตโนมัติ
+// สลับหมวดหมู่ TAB
+// =========================================
+
+function selectCategory(category) {
+
+    if (category !== "classroom" &&
+        category !== "location") return;
+
+    currentCategory = category;
+
+    const classroomTab =
+        document.getElementById("classroomTab");
+
+    const locationTab =
+        document.getElementById("locationTab");
+
+    classroomTab.classList.toggle(
+        "active",
+        category === "classroom"
+    );
+
+    locationTab.classList.toggle(
+        "active",
+        category === "location"
+    );
+
+    classroomTab.setAttribute(
+        "aria-pressed",
+        category === "classroom"
+    );
+
+    locationTab.setAttribute(
+        "aria-pressed",
+        category === "location"
+    );
+
+    renderRooms();
+
+}
+
+
+// =========================================
+// สร้างการ์ดสถานที่อัตโนมัติ
 // =========================================
 
 function renderRooms() {
@@ -155,15 +391,19 @@ function renderRooms() {
 
     Object.entries(routes).forEach(([id, room]) => {
 
+        if (room.category !== currentCategory) {
+            return;
+        }
+
         const button = document.createElement("button");
 
         button.className = "room-card";
+        button.type = "button";
 
         button.innerHTML = `
             <span class="room-icon">${room.icon}</span>
             <h3>${room.name}</h3>
             <span>${room.english}</span>
-            
         `;
 
         button.addEventListener("click", () => {
@@ -173,16 +413,6 @@ function renderRooms() {
         grid.appendChild(button);
 
     });
-
-    const totalRooms = Object.keys(routes).length;
-
-    const totalImages = Object.values(routes).reduce(
-        (sum, room) => sum + room.images.length,
-        0
-    );
-
-    document.getElementById("roomSummary").textContent =
-        `${totalRooms} จุดหมายปลายทาง · ${totalImages} ภาพนำทาง`;
 
 }
 
@@ -202,6 +432,7 @@ function startRoute(room) {
     currentStep = 0;
 
     document.getElementById("home").hidden = true;
+
     document.getElementById("navigation").hidden = false;
 
     document.getElementById("roomName").textContent =
@@ -231,7 +462,28 @@ function showStep() {
         (currentStep + 1) / total * 100
     );
 
-    const routeImage = document.getElementById("routeImage");
+    const routeImage =
+        document.getElementById("routeImage");
+
+    const instruction =
+        document.getElementById("instruction");
+
+    const nextButton =
+        document.getElementById("nextButton");
+
+
+    // ตรวจสอบกรณีภาพไม่สามารถโหลดได้
+
+    routeImage.onerror = function() {
+
+        instruction.textContent =
+            "ไม่สามารถโหลดภาพได้ กรุณาตรวจสอบไฟล์ " +
+            currentRoute?.images[currentStep];
+
+    };
+
+
+    // แสดงภาพปัจจุบัน
 
     routeImage.src = currentRoute.images[currentStep];
 
@@ -251,22 +503,22 @@ function showStep() {
         currentStep === 0;
 
 
-    // เมื่อถึงภาพสุดท้าย
+    // ตรวจสอบจุดหมายปลายทาง
 
     if (currentStep === total - 1) {
 
-        document.getElementById("instruction").textContent =
+        instruction.textContent =
             `✓ ถึง${currentRoute.name}แล้ว!`;
 
-        document.getElementById("nextButton").textContent =
+        nextButton.textContent =
             "✓ เสร็จสิ้นการเดินทาง";
 
     } else {
 
-        document.getElementById("instruction").textContent =
+        instruction.textContent =
             `เดินตามเส้นทางในภาพที่ ${currentStep + 1}`;
 
-        document.getElementById("nextButton").textContent =
+        nextButton.textContent =
             "เดินทางต่อ →";
 
     }
@@ -351,20 +603,24 @@ function goHome() {
     currentStep = 0;
     currentRoute = null;
 
+    selectCategory(currentCategory);
+
     window.scrollTo(0, 0);
 
 }
 
 
 // =========================================
-// ควบคุมด้วยปุ่มลูกศรบน Keyboard
+// ควบคุมด้วย Keyboard
 // =========================================
 
 document.addEventListener("keydown", event => {
 
     if (!currentRoute) return;
 
-    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.altKey ||
+        event.ctrlKey ||
+        event.metaKey) return;
 
     if (event.key === "ArrowRight") {
 
@@ -393,4 +649,4 @@ document.addEventListener("keydown", event => {
 // เริ่มต้นเว็บไซต์
 // =========================================
 
-renderRooms();
+selectCategory("classroom");

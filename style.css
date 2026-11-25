@@ -57,7 +57,7 @@ header {
 h1 {
     font-family: Georgia, serif;
     color: var(--gold);
-    font-size: clamp(32px, 7vw, 60px);
+    font-size: clamp(30px, 7vw, 60px);
     letter-spacing: 5px;
     margin: 10px 0;
 }
@@ -93,13 +93,66 @@ h2 {
     color: var(--muted);
 }
 
-#roomSummary {
-    display: none;
+
+/* ==============================
+   ระบบ TAB หมวดหมู่
+================================ */
+
+.category-tabs {
+    display: flex;
+    gap: 8px;
+
+    max-width: 650px;
+    margin: 30px auto;
+
+    padding: 6px;
+
+    background: #0c1b14;
+    border: 1px solid var(--gold-dark);
+    border-radius: 14px;
+}
+
+.tab-button {
+    flex: 1;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    padding: 16px 12px;
+
+    background: transparent;
+    color: var(--gold);
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.tab-button small {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-top: 6px;
+    opacity: 0.8;
+}
+
+.tab-button:hover {
+    background: #203e2e;
+}
+
+.tab-button.active {
+    background: var(--gold);
+    color: #13291e;
+    border-color: var(--gold);
+    box-shadow: 0 4px 15px #d4b77d15;
 }
 
 
 /* ==============================
-   การ์ดห้องเรียน 3 คอลัมน์
+   การ์ดสถานที่
 ================================ */
 
 .room-grid {
@@ -125,6 +178,11 @@ h2 {
     color: var(--text);
     cursor: pointer;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease,
@@ -141,7 +199,7 @@ h2 {
     transform: scale(0.98);
 }
 
-.room-icon {
+.room-card .room-icon {
     display: block;
     font-size: 44px;
     margin-bottom: 15px;
@@ -156,16 +214,6 @@ h2 {
 
 .room-card span {
     font-size: 14px;
-}
-
-.room-card .room-icon {
-    font-size: 44px;
-}
-
-.room-card small {
-    display: block;
-    margin-top: 15px;
-    color: var(--muted);
 }
 
 
@@ -334,7 +382,22 @@ footer {
     }
 
     h1 {
-        letter-spacing: 3px;
+        letter-spacing: 2px;
+    }
+
+    .category-tabs {
+        margin: 22px auto;
+        gap: 5px;
+    }
+
+    .tab-button {
+        padding: 13px 6px;
+        font-size: 14px;
+    }
+
+    .tab-button small {
+        font-size: 9px;
+        letter-spacing: 1px;
     }
 
     .room-grid {
@@ -342,7 +405,7 @@ footer {
     }
 
     .room-card {
-        min-height: 180px;
+        min-height: 165px;
         padding: 18px 8px;
     }
 
@@ -369,15 +432,18 @@ footer {
 
 }
 
-
-/* ==============================
-   มือถือหน้าจอขนาดเล็ก
-================================ */
-
 @media (max-width: 360px) {
 
     .room-grid {
         grid-template-columns: 1fr;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        transition: none !important;
     }
 
 }

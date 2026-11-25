@@ -7,7 +7,7 @@
 
     <title>HOGWORLDS PATHFINDER</title>
 
-    <meta name="description" content="สมุดนำทางแห่งโลกเวทมนตร์ ระบบนำทางไปยังห้องเรียนทั้ง 9 ห้อง">
+    <meta name="description" content="แผนที่เดินทางของ DANNY ระบบนำทางภายในโลกเวทมนตร์">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,11 +16,8 @@
 
     <header>
         <div class="crest">✦</div>
-
         <h1>HOGWORLDS</h1>
-
         <div class="subtitle">P A T H F I N D E R</div>
-
         <p>แผนที่เดินทางของ DANNY</p>
     </header>
 
@@ -33,13 +30,40 @@
             <h2>เลือกจุดหมายปลายทาง</h2>
 
             <p class="description">
-                เลือกห้องเรียนที่คุณต้องการเดินทางไป
+                เลือกสถานที่ที่คุณต้องการเดินทางไป
             </p>
 
-            <div id="roomSummary"></div>
+            <!-- ระบบสลับหมวดหมู่ -->
+
+            <div class="category-tabs">
+
+                <button
+                    id="classroomTab"
+                    class="tab-button active"
+                    onclick="selectCategory('classroom')"
+                    aria-pressed="true">
+
+                    📖 ห้องเรียน
+                    <small>CLASSROOMS</small>
+
+                </button>
+
+                <button
+                    id="locationTab"
+                    class="tab-button"
+                    onclick="selectCategory('location')"
+                    aria-pressed="false">
+
+                    📍 สถานที่ทั่วไป
+                    <small>LOCATIONS</small>
+
+                </button>
+
+            </div>
+
+            <!-- การ์ดสถานที่ -->
 
             <div class="room-grid" id="roomGrid">
-                <!-- JavaScript สร้างปุ่มห้องเรียนอัตโนมัติ -->
             </div>
 
         </section>
@@ -93,11 +117,13 @@
     </main>
 
     <footer>
+
         <p>✦ HOGWORLDS PATHFINDER ✦</p>
 
         <small>
-            Interactive Classroom Navigation · V1.3
+            Interactive World Navigation · V1.4
         </small>
+
     </footer>
 
     <script src="script.js"></script>
