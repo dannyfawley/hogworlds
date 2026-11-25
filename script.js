@@ -71,7 +71,7 @@ const routes = {
     },
 
 
-    // 04 ห้องวิชาแปลงกาย
+        // 04 ห้องวิชาแปลงกาย
 
     transfiguration: {
         name: "ห้องวิชาแปลงกาย",
@@ -84,7 +84,7 @@ const routes = {
             "2.jpg",
             "10.jpg",
             "12.jpg",
-            "13.jpg"
+            "14.jpg"
         ])
     },
 
