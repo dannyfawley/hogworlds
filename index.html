@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HOGWORLD PATHFINDER</title>
+
+    <meta name="description" content="สมุดนำทางแห่งโลกเวทมนตร์ ระบบนำทางไปยังห้องเรียนทั้ง 9 ห้อง">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="crest">✦</div>
+
+        <h1>HOGWORLD</h1>
+
+        <div class="subtitle">P A T H F I N D E R</div>
+
+        <p>สมุดนำทางแห่งโลกเวทมนตร์</p>
+    </header>
+
+    <main>
+
+        <!-- หน้าหลัก -->
+
+        <section id="home">
+
+            <h2>เลือกจุดหมายปลายทาง</h2>
+
+            <p class="description">
+                เลือกห้องเรียนที่คุณต้องการเดินทางไป
+            </p>
+
+            <div id="roomSummary"></div>
+
+            <div class="room-grid" id="roomGrid">
+                <!-- JavaScript สร้างปุ่มห้องเรียนอัตโนมัติ -->
+            </div>
+
+        </section>
+
+
+        <!-- หน้านำทาง -->
+
+        <section id="navigation" hidden>
+
+            <button class="home-button" onclick="goHome()">
+                ← กลับหน้าหลัก
+            </button>
+
+            <h2 id="roomName"></h2>
+
+            <p id="roomEnglish"></p>
+
+            <div class="progress-info">
+                <span id="stepCounter"></span>
+                <span id="percentage"></span>
+            </div>
+
+            <div class="progress-track">
+                <div id="progressBar"></div>
+            </div>
+
+            <div class="image-frame">
+                <img id="routeImage" alt="ภาพเส้นทางจากในเกม">
+            </div>
+
+            <p id="instruction"></p>
+
+            <div class="navigation-buttons">
+
+                <button id="prevButton" onclick="previousStep()">
+                    ← ย้อนกลับ
+                </button>
+
+                <button id="nextButton" onclick="nextStep()">
+                    เดินทางต่อ →
+                </button>
+
+            </div>
+
+            <button class="restart-button" onclick="restartRoute()">
+                ↻ เริ่มเส้นทางใหม่
+            </button>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>✦ HOGWORLD PATHFINDER ✦</p>
+
+        <small>
+            Interactive Classroom Navigation · V1.3
+        </small>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

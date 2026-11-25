@@ -1,0 +1,386 @@
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --gold: #d4b77d;
+    --gold-dark: #8f7950;
+    --green: #193b2c;
+    --background: #091510;
+    --text: #f2eddf;
+    --muted: #a5b5ab;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: radial-gradient(
+        ellipse at top,
+        #203e2e,
+        #091510 65%
+    );
+
+    color: var(--text);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+button {
+    font-family: inherit;
+}
+
+button:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
+}
+
+
+/* ==============================
+   ส่วนหัวเว็บไซต์
+================================ */
+
+header {
+    text-align: center;
+    padding: 45px 20px 25px;
+}
+
+.crest {
+    font-size: 48px;
+    color: var(--gold);
+}
+
+h1 {
+    font-family: Georgia, serif;
+    color: var(--gold);
+    font-size: clamp(32px, 7vw, 60px);
+    letter-spacing: 5px;
+    margin: 10px 0;
+}
+
+.subtitle {
+    color: var(--gold);
+    font-size: 16px;
+}
+
+header p {
+    color: #b3bfb6;
+}
+
+
+/* ==============================
+   พื้นที่หลัก
+================================ */
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+h2 {
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.description {
+    text-align: center;
+    color: var(--muted);
+}
+
+#roomSummary {
+    text-align: center;
+    color: var(--gold);
+    font-size: 13px;
+    margin: 20px 0;
+}
+
+
+/* ==============================
+   การ์ดห้องเรียน 3 คอลัมน์
+================================ */
+
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.room-card {
+    min-height: 210px;
+    padding: 25px 15px;
+
+    border: 1px solid var(--gold-dark);
+    border-radius: 14px;
+
+    background: linear-gradient(
+        145deg,
+        #244936,
+        #12261d
+    );
+
+    color: var(--text);
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 30px #d4b77d20;
+}
+
+.room-card:active {
+    transform: scale(0.98);
+}
+
+.room-icon {
+    display: block;
+    font-size: 44px;
+    margin-bottom: 15px;
+}
+
+.room-card h3 {
+    color: var(--gold);
+    font-size: 19px;
+    margin: 10px 0 6px;
+    line-height: 1.5;
+}
+
+.room-card span {
+    font-size: 14px;
+}
+
+.room-card .room-icon {
+    font-size: 44px;
+}
+
+.room-card small {
+    display: block;
+    margin-top: 15px;
+    color: var(--muted);
+}
+
+
+/* ==============================
+   หน้านำทาง
+================================ */
+
+#navigation {
+    max-width: 1100px;
+    margin: auto;
+}
+
+#roomEnglish {
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.home-button {
+    background: #234735;
+    border: 1px solid var(--gold-dark);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    color: var(--gold);
+    margin: 20px 0 10px;
+}
+
+.progress-track {
+    height: 8px;
+    background: #304239;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#progressBar {
+    width: 0;
+    height: 100%;
+    background: var(--gold);
+    transition: width 0.3s ease;
+}
+
+
+/* ==============================
+   ภาพนำทาง
+================================ */
+
+.image-frame {
+    background: #060e09;
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#routeImage {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+#instruction {
+    text-align: center;
+    color: var(--gold);
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 25px 0;
+}
+
+
+/* ==============================
+   ปุ่มนำทาง
+================================ */
+
+.navigation-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.navigation-buttons button {
+    flex: 1;
+    background: #234735;
+    border: 1px solid var(--gold);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 16px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.navigation-buttons button:hover:not(:disabled) {
+    filter: brightness(1.15);
+}
+
+.navigation-buttons button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+#nextButton {
+    background: var(--gold);
+    color: #14251a;
+    font-weight: bold;
+}
+
+.restart-button {
+    display: block;
+    margin: 25px auto;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.restart-button:hover {
+    color: var(--gold);
+}
+
+
+/* ==============================
+   ส่วนท้ายเว็บไซต์
+================================ */
+
+footer {
+    text-align: center;
+    padding: 40px 15px;
+    color: #8c9c91;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+
+/* ==============================
+   รองรับ Tablet
+================================ */
+
+@media (max-width: 900px) {
+
+    .room-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* ==============================
+   รองรับมือถือ
+================================ */
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 30px 12px 15px;
+    }
+
+    main {
+        padding: 12px;
+    }
+
+    h1 {
+        letter-spacing: 3px;
+    }
+
+    .room-grid {
+        gap: 10px;
+    }
+
+    .room-card {
+        min-height: 180px;
+        padding: 18px 8px;
+    }
+
+    .room-card h3 {
+        font-size: 15px;
+    }
+
+    .room-card span {
+        font-size: 12px;
+    }
+
+    .room-card .room-icon {
+        font-size: 34px;
+    }
+
+    .navigation-buttons button {
+        padding: 14px 8px;
+        font-size: 14px;
+    }
+
+    #instruction {
+        font-size: 17px;
+    }
+
+}
+
+
+/* ==============================
+   มือถือหน้าจอขนาดเล็ก
+================================ */
+
+@media (max-width: 360px) {
+
+    .room-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
