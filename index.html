@@ -37,22 +37,25 @@
 
     <link rel="icon"
           type="image/png"
-          href="./images/logo.png?v=1.9.1">
+          href="./images/logo.png?v=2.0">
 
 
-    <!-- CSS STYLESHEET -->
+    <!-- STYLESHEETS -->
 
     <link rel="stylesheet"
-          href="style.css?v=1.9.1">
+          href="style.css?v=2.0">
 
     <link rel="stylesheet"
           href="animation.css?v=1.8.1">
+
+    <link rel="stylesheet"
+          href="smart.css?v=2.0.1">
 
 
     <style>
 
         /* =====================================
-           V1.9.1 — REFINED HEADER LAYOUT
+           COMPACT HEADER
         ===================================== */
 
         header {
@@ -133,7 +136,7 @@
         }
 
 
-        /* ชื่อเว็บไซต์ HOGWORLDS */
+        /* HOGWORLDS */
 
         header h1 {
 
@@ -166,9 +169,7 @@
         }
 
 
-        /* =====================================
-           COMPACT HOME PAGE
-        ===================================== */
+        /* COMPACT HOME PAGE */
 
         main {
 
@@ -188,16 +189,12 @@
         }
 
 
-        /* ลดระยะห่างของ TAB */
-
         .category-tabs {
 
             margin: 12px auto 20px;
 
         }
 
-
-        /* ลดช่องว่างก่อนการ์ดสถานที่ */
 
         .room-grid {
 
@@ -303,7 +300,7 @@
         <div class="crest">
 
             <img
-                src="./images/logo.png?v=1.9.1"
+                src="./images/logo.png?v=2.0"
                 alt="Hogworlds Pathfinder Logo"
                 class="site-logo">
 
@@ -339,7 +336,100 @@
             </h2>
 
 
-            <!-- TAB ทั้ง 3 หมวด -->
+            <!-- =================================
+                 QUICK SEARCH
+            ================================== -->
+
+            <div
+                class="smart-search"
+                role="search">
+
+                <svg
+                    class="search-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    aria-hidden="true">
+
+                    <circle
+                        cx="11"
+                        cy="11"
+                        r="7">
+
+                    </circle>
+
+                    <path d="m16 16 5 5"></path>
+
+                </svg>
+
+
+                <input
+                    type="search"
+                    id="smartSearch"
+                    placeholder="ค้นหาห้องเรียน หรือสถานที่..."
+                    aria-label="ค้นหาสถานที่"
+                    autocomplete="off">
+
+
+                <button
+                    type="button"
+                    id="clearSearch"
+                    class="smart-clear"
+                    aria-label="ล้างคำค้นหา"
+                    hidden>
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================
+                 RECENTLY VISITED
+            ================================== -->
+
+            <section
+                id="recentSection"
+                class="recent-section"
+                hidden>
+
+
+                <div class="recent-heading">
+
+                    <h3>
+
+                        🕒 เดินทางล่าสุด
+
+                    </h3>
+
+
+                    <button
+                        type="button"
+                        id="clearRecent"
+                        class="recent-clear">
+
+                        ล้างประวัติ
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="recentGrid"
+                    class="recent-grid">
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 TAB ทั้ง 3 หมวด
+            ================================== -->
 
             <div class="category-tabs">
 
@@ -394,6 +484,17 @@
             </div>
 
 
+            <!-- จำนวนผลการค้นหา -->
+
+            <p
+                id="searchStatus"
+                role="status"
+                aria-live="polite"
+                hidden>
+
+            </p>
+
+
             <!-- การ์ดสถานที่ทั้งหมด -->
 
             <div
@@ -403,7 +504,39 @@
             </div>
 
 
-            <!-- เมื่อยังไม่มีรายการโปรด -->
+            <!-- เมื่อค้นหาไม่พบ -->
+
+            <div
+                id="searchEmpty"
+                class="search-empty"
+                hidden>
+
+
+                <div class="search-empty-icon">
+
+                    🔍
+
+                </div>
+
+
+                <h3>
+
+                    ไม่พบสถานที่ที่ค้นหา
+
+                </h3>
+
+
+                <p>
+
+                    ลองค้นหาด้วยชื่อภาษาไทย
+                    หรือภาษาอังกฤษ
+
+                </p>
+
+            </div>
+
+
+            <!-- เมื่อไม่มีรายการโปรด -->
 
             <div
                 id="emptyFavorites"
@@ -454,16 +587,31 @@
         <section id="navigation" hidden>
 
 
-            <!-- กลับหน้าหลัก -->
+            <!-- ปุ่มกลับหน้าหลักและแชร์ลิงก์ -->
 
-            <button
-                type="button"
-                class="home-button"
-                onclick="goHome()">
+            <div class="navigation-topbar">
 
-                ← กลับหน้าหลัก
 
-            </button>
+                <button
+                    type="button"
+                    class="home-button"
+                    onclick="goHome()">
+
+                    ← กลับหน้าหลัก
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="shareButton"
+                    class="share-button">
+
+                    🔗 คัดลอกลิงก์สถานที่
+
+                </button>
+
+            </div>
 
 
             <!-- ชื่อสถานที่ -->
@@ -491,7 +639,7 @@
             </div>
 
 
-            <!-- ภาพนำทางและเอฟเฟกต์เวทมนตร์ -->
+            <!-- ภาพนำทางและ Animation -->
 
             <div class="image-frame">
 
@@ -501,8 +649,6 @@
 
             </div>
 
-
-            <!-- ข้อความแนะนำการเดินทาง -->
 
             <p id="instruction"></p>
 
@@ -551,7 +697,7 @@
 
 
     <!-- =====================================
-         LUXURY DANNY SIGNATURE FOOTER
+         LUXURY DANNY SIGNATURE
     ====================================== -->
 
     <footer class="signature-footer">
@@ -564,7 +710,7 @@
     </footer>
 
 
-    <!-- FAVORITES TOAST NOTIFICATION -->
+    <!-- TOAST NOTIFICATION -->
 
     <div
         id="favoriteToast"
@@ -575,14 +721,16 @@
     </div>
 
 
-    <!-- MAIN JAVASCRIPT -->
+    <!-- =====================================
+         JAVASCRIPT
+         ลำดับการโหลดมีความสำคัญ
+    ====================================== -->
 
-    <script src="script.js?v=1.9"></script>
-
-
-    <!-- LIVING MAGIC ANIMATION -->
+    <script src="script.js?v=2.0"></script>
 
     <script src="animation.js?v=1.8.1"></script>
+
+    <script src="smart.js?v=2.0.1"></script>
 
 
 </body>

@@ -1,0 +1,299 @@
+
+/* =========================================
+   HOGWORLDS PATHFINDER V2.0
+   SMART NAVIGATION
+========================================= */
+
+
+/* =========================================
+   QUICK SEARCH
+========================================= */
+
+.smart-search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    max-width: 850px;
+
+    margin: 0 auto 18px;
+    padding: 8px 16px;
+
+    background: #10251b;
+    border: 1px solid #8f7950;
+    border-radius: 12px;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.smart-search:focus-within {
+    border-color: #d4b77d;
+    box-shadow: 0 0 16px #d4b77d25;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: #d4b77d;
+}
+
+#smartSearch {
+    flex: 1;
+    min-width: 0;
+
+    padding: 9px 0;
+
+    background: transparent;
+    border: none;
+    outline: none;
+
+    color: #f2eddf;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+#smartSearch::placeholder {
+    color: #a5b5ab;
+}
+
+#smartSearch::-webkit-search-cancel-button {
+    display: none;
+}
+
+.smart-clear {
+    border: none;
+    background: transparent;
+    color: #d4b77d;
+
+    font-size: 23px;
+    cursor: pointer;
+}
+
+#searchStatus {
+    text-align: center;
+    color: #d4b77d;
+
+    font-size: 14px;
+    margin: 12px 0;
+}
+
+
+/* =========================================
+   RECENTLY VISITED
+========================================= */
+
+.recent-section {
+    max-width: 850px;
+    margin: 0 auto 20px;
+}
+
+.recent-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+.recent-heading h3 {
+    color: #d4b77d;
+
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.recent-clear {
+    border: none;
+    background: transparent;
+
+    color: #a5b5ab;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.recent-clear:hover {
+    color: #d4b77d;
+}
+
+.recent-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+.recent-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-width: 0;
+    min-height: 65px;
+    padding: 12px 8px;
+
+    background: linear-gradient(
+        145deg,
+        #203f2e,
+        #12261d
+    );
+
+    border: 1px solid #756747;
+    border-radius: 10px;
+
+    color: #d4b77d;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.recent-card:hover {
+    border-color: #d4b77d;
+    box-shadow: 0 0 12px #d4b77d20;
+    transform: translateY(-2px);
+}
+
+.recent-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.recent-name {
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   DIRECT LINK / SHARE
+========================================= */
+
+.navigation-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.share-button {
+    padding: 12px 18px;
+
+    background: #193b2c;
+    color: #d4b77d;
+
+    border: 1px solid #8f7950;
+    border-radius: 10px;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.share-button:hover {
+    background: #244936;
+    box-shadow: 0 0 12px #d4b77d25;
+}
+
+
+/* =========================================
+   EMPTY SEARCH RESULT
+========================================= */
+
+.search-empty {
+    max-width: 650px;
+    margin: 25px auto;
+    padding: 35px 20px;
+
+    text-align: center;
+    color: #a5b5ab;
+
+    background: #193b2c40;
+    border: 1px dashed #8f7950;
+    border-radius: 14px;
+}
+
+.search-empty h3 {
+    color: #d4b77d;
+    margin: 10px 0;
+}
+
+.search-empty-icon {
+    font-size: 42px;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .smart-search {
+        margin-bottom: 14px;
+        padding: 6px 12px;
+    }
+
+    #smartSearch {
+        font-size: 16px;
+    }
+
+    .recent-grid {
+        gap: 6px;
+    }
+
+    .recent-card {
+        flex-direction: column;
+        gap: 5px;
+        padding: 8px 4px;
+        min-height: 80px;
+    }
+
+    .recent-icon {
+        font-size: 21px;
+    }
+
+    .recent-name {
+        font-size: 11px;
+    }
+
+    .share-button,
+    .navigation-topbar .home-button {
+        font-size: 12px;
+        padding: 10px 12px;
+    }
+
+    .recent-section {
+        margin-bottom: 15px;
+    }
+
+}
+
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .smart-search,
+    .recent-card,
+    .share-button {
+        transition: none;
+    }
+
+}
