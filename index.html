@@ -11,6 +11,9 @@
 
     <title>HOGWORLDS PATHFINDER</title>
 
+
+    <!-- WEBSITE DESCRIPTION -->
+
     <meta name="description"
           content="แผนที่เดินทางของ Danny ที่จะพาคุณไปเรียนได้ถูกทาง">
 
@@ -26,86 +29,364 @@
     <meta property="og:type"
           content="website">
 
+    <meta name="theme-color"
+          content="#091510">
 
-    <!-- CSS หลัก -->
+
+    <!-- FAVICON -->
+
+    <link rel="icon"
+          type="image/png"
+          href="./images/logo.png?v=1.9.1">
+
+
+    <!-- CSS STYLESHEET -->
 
     <link rel="stylesheet"
-          href="style.css?v=1.8.2">
-
-
-    <!-- CSS Animation -->
+          href="style.css?v=1.9.1">
 
     <link rel="stylesheet"
-          href="animation.css?v=1.8.2">
+          href="animation.css?v=1.8.1">
+
+
+    <style>
+
+        /* =====================================
+           V1.9.1 — REFINED HEADER LAYOUT
+        ===================================== */
+
+        header {
+
+            text-align: center;
+
+            padding: 24px 20px 6px;
+
+        }
+
+
+        .crest {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin: 0 0 4px;
+
+        }
+
+
+        /* โลโก้เว็บไซต์ */
+
+        .site-logo {
+
+            display: block;
+
+            width: 150px;
+
+            max-width: 45vw;
+
+            height: auto;
+
+            filter: drop-shadow(
+                0 0 10px #d4b77d35
+            );
+
+            animation:
+                logoBreathing
+                5s
+                ease-in-out
+                infinite;
+
+            transition:
+                transform 0.4s ease;
+
+        }
+
+
+        .site-logo:hover {
+
+            transform: scale(1.06);
+
+        }
+
+
+        @keyframes logoBreathing {
+
+            0%, 100% {
+
+                filter: drop-shadow(
+                    0 0 8px #d4b77d25
+                );
+
+            }
+
+            50% {
+
+                filter: drop-shadow(
+                    0 0 22px #d4b77d65
+                );
+
+            }
+
+        }
+
+
+        /* ชื่อเว็บไซต์ HOGWORLDS */
+
+        header h1 {
+
+            margin: 4px 0 8px;
+
+            line-height: 1.2;
+
+        }
+
+
+        /* แผนที่เดินทางของ DANNY */
+
+        header .site-tagline {
+
+            font-size: 20px;
+
+            font-weight: 500;
+
+            color: #d4b77d;
+
+            letter-spacing: 0.5px;
+
+            line-height: 1.5;
+
+            margin: 6px 0 0;
+
+            text-shadow:
+                0 0 10px #d4b77d25;
+
+        }
+
+
+        /* =====================================
+           COMPACT HOME PAGE
+        ===================================== */
+
+        main {
+
+            padding-top: 18px;
+
+        }
+
+
+        #home > h2 {
+
+            font-size: 24px;
+
+            margin: 0 0 16px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* ลดระยะห่างของ TAB */
+
+        .category-tabs {
+
+            margin: 12px auto 20px;
+
+        }
+
+
+        /* ลดช่องว่างก่อนการ์ดสถานที่ */
+
+        .room-grid {
+
+            margin-top: 16px;
+
+        }
+
+
+        /* =====================================
+           MOBILE RESPONSIVE
+        ===================================== */
+
+        @media (max-width: 600px) {
+
+            header {
+
+                padding: 18px 12px 4px;
+
+            }
+
+
+            .site-logo {
+
+                width: 115px;
+
+            }
+
+
+            header h1 {
+
+                margin: 4px 0 6px;
+
+            }
+
+
+            header .site-tagline {
+
+                font-size: 16px;
+
+                margin: 4px 0 0;
+
+            }
+
+
+            main {
+
+                padding-top: 14px;
+
+            }
+
+
+            #home > h2 {
+
+                font-size: 20px;
+
+                margin-bottom: 12px;
+
+            }
+
+
+            .category-tabs {
+
+                margin: 10px auto 14px;
+
+            }
+
+
+            .room-grid {
+
+                margin-top: 12px;
+
+            }
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .site-logo {
+
+                animation: none;
+
+                transition: none;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
 
 <body>
 
+
+    <!-- =====================================
+         WEBSITE HEADER
+    ====================================== -->
+
     <header>
 
-        <div class="crest">✦</div>
+        <div class="crest">
+
+            <img
+                src="./images/logo.png?v=1.9.1"
+                alt="Hogworlds Pathfinder Logo"
+                class="site-logo">
+
+        </div>
+
 
         <h1>HOGWORLDS</h1>
 
-        <div class="subtitle">
-            P A T H F I N D E R
-        </div>
 
-        <p>แผนที่เดินทางของ DANNY</p>
+        <p class="site-tagline">
+
+            แผนที่เดินทางของ DANNY
+
+        </p>
 
     </header>
 
 
     <main>
 
-        <!-- หน้าหลัก -->
+
+        <!-- =====================================
+             HOME PAGE
+        ====================================== -->
 
         <section id="home">
 
-            <h2>เลือกจุดหมายปลายทาง</h2>
 
-            <p class="description">
-                เลือกสถานที่ที่คุณต้องการเดินทางไป
-            </p>
+            <h2>
+
+                เลือกจุดหมายปลายทาง
+
+            </h2>
 
 
             <!-- TAB ทั้ง 3 หมวด -->
 
             <div class="category-tabs">
 
+
+                <!-- ห้องเรียน -->
+
                 <button
+                    type="button"
                     id="classroomTab"
                     class="tab-button active"
                     onclick="selectCategory('classroom')"
                     aria-pressed="true">
 
                     📖 ห้องเรียน
+
                     <small>CLASSROOMS</small>
 
                 </button>
 
 
+                <!-- สถานที่ทั่วไป -->
+
                 <button
+                    type="button"
                     id="locationTab"
                     class="tab-button"
                     onclick="selectCategory('location')"
                     aria-pressed="false">
 
                     📍 สถานที่ทั่วไป
+
                     <small>LOCATIONS</small>
 
                 </button>
 
 
+                <!-- รายการโปรด -->
+
                 <button
+                    type="button"
                     id="favoritesTab"
                     class="tab-button"
                     onclick="selectCategory('favorites')"
                     aria-pressed="false">
 
                     ★ รายการโปรด
+
                     <small>FAVORITES</small>
 
                 </button>
@@ -113,28 +394,47 @@
             </div>
 
 
-            <!-- การ์ดสถานที่ -->
+            <!-- การ์ดสถานที่ทั้งหมด -->
 
-            <div class="room-grid" id="roomGrid">
+            <div
+                class="room-grid"
+                id="roomGrid">
+
             </div>
 
 
             <!-- เมื่อยังไม่มีรายการโปรด -->
 
-            <div id="emptyFavorites"
-                 class="empty-favorites"
-                 hidden>
+            <div
+                id="emptyFavorites"
+                class="empty-favorites"
+                hidden>
 
-                <div class="empty-star">☆</div>
 
-                <h2>ยังไม่มีรายการโปรด</h2>
+                <div class="empty-star">
+
+                    ☆
+
+                </div>
+
+
+                <h2>
+
+                    ยังไม่มีรายการโปรด
+
+                </h2>
+
 
                 <p>
+
                     กดดาวที่สถานที่ที่คุณเดินทางไปบ่อย
                     เพื่อบันทึกไว้ที่นี่
+
                 </p>
 
+
                 <button
+                    type="button"
                     class="home-button"
                     onclick="selectCategory('classroom')">
 
@@ -147,11 +447,17 @@
         </section>
 
 
-        <!-- หน้านำทาง -->
+        <!-- =====================================
+             NAVIGATION PAGE
+        ====================================== -->
 
         <section id="navigation" hidden>
 
+
+            <!-- กลับหน้าหลัก -->
+
             <button
+                type="button"
                 class="home-button"
                 onclick="goHome()">
 
@@ -160,12 +466,14 @@
             </button>
 
 
+            <!-- ชื่อสถานที่ -->
+
             <h2 id="roomName"></h2>
 
             <p id="roomEnglish"></p>
 
 
-            <!-- ความคืบหน้า -->
+            <!-- ความคืบหน้าการเดินทาง -->
 
             <div class="progress-info">
 
@@ -183,7 +491,7 @@
             </div>
 
 
-            <!-- ภาพนำทางพร้อม Animation -->
+            <!-- ภาพนำทางและเอฟเฟกต์เวทมนตร์ -->
 
             <div class="image-frame">
 
@@ -194,14 +502,18 @@
             </div>
 
 
+            <!-- ข้อความแนะนำการเดินทาง -->
+
             <p id="instruction"></p>
 
 
-            <!-- ปุ่มควบคุม -->
+            <!-- ปุ่มควบคุมการเดินทาง -->
 
             <div class="navigation-buttons">
 
+
                 <button
+                    type="button"
                     id="prevButton"
                     onclick="previousStep()">
 
@@ -211,6 +523,7 @@
 
 
                 <button
+                    type="button"
                     id="nextButton"
                     onclick="nextStep()">
 
@@ -221,7 +534,10 @@
             </div>
 
 
+            <!-- เริ่มเส้นทางใหม่ -->
+
             <button
+                type="button"
                 class="restart-button"
                 onclick="restartRoute()">
 
@@ -233,17 +549,22 @@
 
     </main>
 
-<footer class="signature-footer">
 
-    <img
-        src="./images/signature1.png"
-        alt="Danny Signature"
-        class="danny-signature">
+    <!-- =====================================
+         LUXURY DANNY SIGNATURE FOOTER
+    ====================================== -->
 
-</footer>
+    <footer class="signature-footer">
+
+        <img
+            src="./images/signature1.png"
+            alt="Danny Signature"
+            class="danny-signature">
+
+    </footer>
 
 
-    <!-- แจ้งเตือนรายการโปรด -->
+    <!-- FAVORITES TOAST NOTIFICATION -->
 
     <div
         id="favoriteToast"
@@ -254,14 +575,15 @@
     </div>
 
 
-    <!-- JavaScript หลัก -->
+    <!-- MAIN JAVASCRIPT -->
 
-    <script src="script.js?v=1.8.1"></script>
+    <script src="script.js?v=1.9"></script>
 
 
-    <!-- JavaScript Animation -->
+    <!-- LIVING MAGIC ANIMATION -->
 
     <script src="animation.js?v=1.8.1"></script>
+
 
 </body>
 

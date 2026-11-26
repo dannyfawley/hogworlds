@@ -660,3 +660,61 @@ footer {
         transition: none;
     }
 }
+
+/* =====================================
+   V1.9 — DANNY MAGICAL LOGO
+===================================== */
+
+.crest {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.site-logo {
+    display: block;
+    width: 150px;
+    max-width: 45vw;
+    height: auto;
+
+    filter: drop-shadow(
+        0 0 10px #d4b77d35
+    );
+
+    animation: logoBreathing
+        5s ease-in-out infinite;
+
+    transition: transform 0.4s ease;
+}
+
+.site-logo:hover {
+    transform: scale(1.06);
+}
+
+@keyframes logoBreathing {
+    0%, 100% {
+        filter: drop-shadow(
+            0 0 8px #d4b77d25
+        );
+    }
+
+    50% {
+        filter: drop-shadow(
+            0 0 22px #d4b77d65
+        );
+    }
+}
+
+@media (max-width: 600px) {
+    .site-logo {
+        width: 115px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-logo {
+        animation: none;
+        transition: none;
+    }
+}
