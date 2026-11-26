@@ -628,3 +628,40 @@ footer {
     }
 
 }
+
+/* =====================================
+   DANNY SIGNATURE FOOTER
+===================================== */
+
+.signature-footer {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.danny-signature {
+    display: block;
+
+    width: 180px;
+    max-width: 65%;
+    height: auto;
+
+    margin: 0 auto;
+
+    opacity: 0.85;
+
+    transition: opacity 0.4s ease;
+}
+
+.danny-signature:hover {
+    opacity: 1;
+
+    filter: drop-shadow(
+        0 0 8px #d4b77d60
+    );
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .danny-signature {
+        transition: none;
+    }
+}
