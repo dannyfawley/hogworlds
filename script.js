@@ -1,7 +1,7 @@
 
 // =========================================
 // HOGWORLDS PATHFINDER V1.6
-// WORLD EXPANSION
+// UPDATED WORLD NAVIGATION ROUTES
 // =========================================
 
 
@@ -106,7 +106,7 @@ const routes = {
     },
 
 
-    // 06 เรือนกระจกสมุนไพร
+    // 06 เรือนกระจกสมุนไพร — UPDATED
 
     herbology: {
         name: "เรือนกระจก (สมุนไพร)",
@@ -115,9 +115,9 @@ const routes = {
         category: "classroom",
 
         images: getImages("herbology", [
-            "24.jpg",
-            "25.jpg",
-            "26.jpg"
+            "91.jpg",
+            "92.jpg",
+            "93.jpg"
         ])
     },
 
@@ -139,7 +139,7 @@ const routes = {
     },
 
 
-    // 08 ห้องเล่นแร่แปรธาตุ
+    // 08 ห้องเล่นแร่แปรธาตุ — UPDATED
 
     alchemy: {
         name: "ห้องเล่นแร่แปรธาตุ",
@@ -148,15 +148,15 @@ const routes = {
         category: "classroom",
 
         images: getImages("alchemy", [
-            "1.jpg",
-            "2.jpg",
-            "22.jpg",
-            "28.jpg"
+            "98.jpg",
+            "99.jpg",
+            "100.jpg",
+            "101.jpg",
+            "102.jpg"
         ])
     },
 
-
-    // 09 ห้องเต้นรำ
+    // 09 ห้องเต้นรำ — UPDATED
 
     dance: {
         name: "ห้องเต้นรำ",
@@ -165,15 +165,16 @@ const routes = {
         category: "classroom",
 
         images: getImages("dance", [
-            "1.jpg",
-            "2.jpg",
-            "22.jpg",
-            "29.jpg"
+            "103.jpg",
+            "104.jpg",
+            "105.jpg",
+            "106.jpg",
+            "107.jpg"
         ])
     },
 
 
-    // 10 ห้องเรียนการบิน
+    // 10 ห้องเรียนการบิน — UPDATED
 
     flying: {
         name: "ห้องเรียนการบิน",
@@ -182,11 +183,11 @@ const routes = {
         category: "classroom",
 
         images: getImages("flying", [
-            "30.jpg",
-            "31.jpg",
-            "34.jpg",
-            "35.jpg",
-            "37.jpg"
+            "108.jpg",
+            "116.jpg",
+            "117.jpg",
+            "118.jpg",
+            "119.jpg"
         ])
     },
 
@@ -209,7 +210,7 @@ const routes = {
     },
 
 
-    // 12 ลานเรียนแปลงกาย
+    // 12 ลานเรียนแปลงกาย — UPDATED
 
     transfiguration_yard: {
         name: "ลานเรียนแปลงกาย",
@@ -218,11 +219,11 @@ const routes = {
         category: "classroom",
 
         images: getImages("transfiguration_yard", [
-            "30.jpg",
-            "31.jpg",
-            "34.jpg",
-            "35.jpg",
-            "36.jpg"
+            "108.jpg",
+            "112.jpg",
+            "113.jpg",
+            "114.jpg",
+            "115.jpg"
         ])
     },
 
@@ -232,7 +233,7 @@ const routes = {
     // =====================================
 
 
-    // 13 ลานหินข้างปราสาท
+    // 13 ลานหินข้างปราสาท — UPDATED
 
     courtyard: {
         name: "ลานหินข้างปราสาท",
@@ -241,9 +242,9 @@ const routes = {
         category: "location",
 
         images: getImages("courtyard", [
-            "31.jpg",
-            "38.jpg",
-            "39.jpg"
+            "120.jpg",
+            "121.jpg",
+            "122.jpg"
         ])
     },
 
@@ -263,7 +264,7 @@ const routes = {
     },
 
 
-    // 15 สวนมิสเฟลอร์ — UPDATED
+    // 15 สวนมิสเฟลอร์
 
     garden: {
         name: "สวนมิสเฟลอร์",
@@ -282,7 +283,7 @@ const routes = {
     },
 
 
-    // 16 คอกสัตว์วิเศษ
+    // 16 คอกสัตว์วิเศษ — UPDATED
 
     beasts: {
         name: "คอกสัตว์วิเศษ",
@@ -291,10 +292,10 @@ const routes = {
         category: "location",
 
         images: getImages("beasts", [
-            "30.jpg",
-            "31.jpg",
-            "32.jpg",
-            "33.jpg"
+            "108.jpg",
+            "109.jpg",
+            "110.jpg",
+            "111.jpg"
         ])
     },
 
@@ -315,7 +316,7 @@ const routes = {
     },
 
 
-    // 18 หอดูดาว
+    // 18 หอดูดาว — UPDATED
 
     observatory: {
         name: "หอดูดาว",
@@ -324,11 +325,11 @@ const routes = {
         category: "location",
 
         images: getImages("observatory", [
-            "1.jpg",
-            "2.jpg",
-            "3.jpg",
-            "6.jpg",
-            "7.jpg"
+            "129.jpg",
+            "130.jpg",
+            "131.jpg",
+            "132.jpg",
+            "133.jpg"
         ])
     },
 
@@ -365,7 +366,7 @@ const routes = {
     },
 
 
-    // 21 ห้องบำบัด
+    // 21 ห้องบำบัด — UPDATED
 
     therapy: {
         name: "ห้องบำบัด",
@@ -374,17 +375,17 @@ const routes = {
         category: "location",
 
         images: getImages("therapy", [
-            "60.jpg",
-            "61.jpg",
-            "62.jpg",
-            "63.jpg",
-            "64.jpg",
-            "65.jpg"
+            "123.jpg",
+            "124.jpg",
+            "125.jpg",
+            "126.jpg",
+            "127.jpg",
+            "128.jpg"
         ])
     },
 
 
-    // 22 ศาลามิสเฟลอร์ — NEW
+    // 22 ศาลามิสเฟลอร์
 
     pavilion: {
         name: "ศาลามิสเฟลอร์",
@@ -401,7 +402,7 @@ const routes = {
     },
 
 
-    // 23 ห้องสมุด — NEW
+    // 23 ห้องสมุด
 
     library: {
         name: "ห้องสมุด",
@@ -421,7 +422,7 @@ const routes = {
     },
 
 
-    // 24 ป่าต้องห้าม — NEW
+    // 24 ป่าต้องห้าม
 
     forbidden_forest: {
         name: "ป่าต้องห้าม",
