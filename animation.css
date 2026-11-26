@@ -1,11 +1,8 @@
 
-/* =====================================
-   HOGWORLDS PATHFINDER V1.8
-   MAGICAL NAVIGATION ANIMATION
-===================================== */
-
-
-/* กรอบภาพนำทาง */
+/* =========================================
+   HOGWORLDS PATHFINDER V1.8.1
+   LIVING MAGIC
+========================================= */
 
 .image-frame {
     position: relative;
@@ -13,12 +10,9 @@
     overflow: hidden;
 
     transition:
-        border-color 0.4s ease,
-        box-shadow 0.4s ease;
+        border-color 0.6s ease,
+        box-shadow 0.6s ease;
 }
-
-
-/* ภาพหลัก */
 
 #routeImage {
     position: relative;
@@ -29,11 +23,12 @@
 }
 
 
-/* ภาพเก่าที่ใช้ทำ Crossfade */
+/* =========================================
+   SMOOTH CROSSFADE
+========================================= */
 
 .magic-old-image {
     position: absolute;
-
     inset: 0;
 
     width: 100%;
@@ -42,12 +37,12 @@
     object-fit: contain;
 
     z-index: 2;
-
     pointer-events: none;
 }
 
 .magic-old-image.fade-out {
-    animation: magicCrossfade 0.4s ease-in-out forwards;
+    animation:
+        magicCrossfade 0.6s ease-in-out forwards;
 }
 
 @keyframes magicCrossfade {
@@ -63,151 +58,299 @@
 }
 
 
-/* =====================================
-   GOLDEN GLOW
-===================================== */
+/* =========================================
+   CONTINUOUS GOLDEN GLOW
+   กรอบภาพเรืองแสงตลอดเวลา
+========================================= */
 
-.image-frame.magic-glow {
-    animation: goldenGlow 0.7s ease-out;
+.image-frame.magic-active {
+
+    animation:
+        livingGlow 4s ease-in-out infinite;
+
 }
 
-@keyframes goldenGlow {
+@keyframes livingGlow {
 
-    0% {
-        box-shadow: 0 0 0 transparent;
-    }
+    0%, 100% {
 
-    45% {
-        border-color: #ffe8ad;
+        border-color: #c6a86c;
 
         box-shadow:
-            0 0 12px #e4c37880,
-            0 0 28px #e4c37845;
+            0 0 8px #d4b77d30,
+            0 0 16px #d4b77d15;
+
     }
 
-    100% {
-        box-shadow: 0 0 0 transparent;
+    50% {
+
+        border-color: #f7dfa5;
+
+        box-shadow:
+            0 0 18px #e4c37870,
+            0 0 35px #e4c37830;
+
     }
 
 }
 
 
-/* =====================================
-   MAGICAL PARTICLES
-===================================== */
+/* =========================================
+   CONTINUOUS MAGICAL PARTICLES
+   ประกายเวทมนตร์แบบต่อเนื่อง
+========================================= */
 
-.magic-particle {
+.magic-particle-layer {
+
     position: absolute;
+    inset: 0;
 
     z-index: 5;
 
-    color: #ffe5a0;
+    overflow: hidden;
+
+    pointer-events: none;
+
+}
+
+.magic-particle {
+
+    position: absolute;
+
+    color: #ffe4a0;
 
     pointer-events: none;
     user-select: none;
 
+    opacity: 0;
+
     text-shadow:
         0 0 6px #ffd77d,
-        0 0 12px #ffd77d80;
+        0 0 12px #ffd77d60;
 
     animation:
-        magicParticleFloat 0.8s ease-out forwards;
+        continuousParticle
+        var(--duration, 7s)
+        linear
+        infinite;
+
+    animation-delay:
+        var(--delay, 0s);
+
+    will-change:
+        transform,
+        opacity;
+
 }
 
-@keyframes magicParticleFloat {
+@keyframes continuousParticle {
 
     0% {
+
         opacity: 0;
 
         transform:
-            translate(0, 12px)
-            scale(0.3);
+            translate(0, 25px)
+            scale(0.4);
+
     }
 
-    30% {
-        opacity: 1;
+    20% {
+
+        opacity: 0.8;
+
+    }
+
+    50% {
+
+        opacity: 0.95;
+
+    }
+
+    75% {
+
+        opacity: 0.5;
+
     }
 
     100% {
+
         opacity: 0;
 
         transform:
-            translate(var(--drift), -65px)
-            scale(0.3);
+            translate(
+                var(--drift, 20px),
+                -110px
+            )
+            scale(0.7);
+
     }
 
 }
 
 
-/* =====================================
-   DESTINATION REACHED
-===================================== */
+/* =========================================
+   DESTINATION CELEBRATION
+   เอฟเฟกต์พิเศษเมื่อถึงจุดหมาย
+   ระยะเวลา 8 วินาที
+========================================= */
 
-.image-frame.magic-arrived {
+.image-frame.magic-arrival-burst {
 
-    border-color: #f2d18b;
+    animation:
+        destinationCelebration
+        8s
+        ease-in-out
+        forwards;
 
-    box-shadow:
-        0 0 18px #d4b77d35;
-
-    animation: destinationGlow 1.2s ease-out;
 }
 
-@keyframes destinationGlow {
+@keyframes destinationCelebration {
 
     0% {
-        box-shadow: 0 0 0 transparent;
+
+        border-color: #d4b77d;
+
+        box-shadow:
+            0 0 10px #d4b77d30;
+
     }
 
-    45% {
+    15%, 45%, 75% {
+
+        border-color: #fff0b5;
+
         box-shadow:
-            0 0 20px #ffe0a080,
-            0 0 40px #d4b77d50;
+            0 0 22px #ffe0a090,
+            0 0 45px #d4b77d60;
+
+    }
+
+    30%, 60%, 90% {
+
+        border-color: #ebca85;
+
+        box-shadow:
+            0 0 15px #ffe0a050,
+            0 0 25px #d4b77d30;
+
     }
 
     100% {
+
+        border-color: #f2d18b;
+
         box-shadow:
-            0 0 18px #d4b77d35;
+            0 0 18px #d4b77d40;
+
     }
 
 }
 
 
-/* ข้อความเมื่อถึงจุดหมาย */
+/* =========================================
+   DESTINATION — CONTINUOUS GLOW
+   หลังจบเอฟเฟกต์ฉลอง
+   ยังคงเรืองแสงต่อเนื่อง
+========================================= */
+
+.image-frame.magic-arrived:not(.magic-arrival-burst) {
+
+    animation:
+        destinationIdle
+        5s
+        ease-in-out
+        infinite;
+
+}
+
+@keyframes destinationIdle {
+
+    0%, 100% {
+
+        border-color: #e4c378;
+
+        box-shadow:
+            0 0 12px #d4b77d40;
+
+    }
+
+    50% {
+
+        border-color: #fff0b5;
+
+        box-shadow:
+            0 0 25px #e4c37880,
+            0 0 40px #d4b77d35;
+
+    }
+
+}
+
+
+/* ประกายพิเศษเมื่อถึงจุดหมาย */
+
+.magic-arrived .magic-particle {
+
+    color: #fff0bb;
+
+    text-shadow:
+        0 0 8px #ffe5a0,
+        0 0 16px #ffd77d90;
+
+}
+
+
+/* =========================================
+   ข้อความเมื่อเดินทางถึงจุดหมาย
+========================================= */
 
 #instruction.magic-success {
+
     color: #f5d58e;
 
     font-weight: bold;
+
     letter-spacing: 0.5px;
 
     animation:
-        successText 0.6s ease-out;
-}
-
-@keyframes successText {
-
-    from {
-        opacity: 0.4;
-        transform: translateY(5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+        successTextGlow
+        3s
+        ease-in-out
+        infinite;
 
 }
 
+@keyframes successTextGlow {
 
-/* =====================================
+    0%, 100% {
+
+        text-shadow:
+            0 0 4px #d4b77d20;
+
+    }
+
+    50% {
+
+        color: #ffe9b1;
+
+        text-shadow:
+            0 0 10px #d4b77d80,
+            0 0 20px #d4b77d40;
+
+    }
+
+}
+
+
+/* =========================================
    SMOOTH PROGRESS BAR
-===================================== */
+========================================= */
 
 #progressBar {
 
     transition:
-        width 0.4s cubic-bezier(
+        width 0.6s cubic-bezier(
             0.22, 1, 0.36, 1
         );
 
@@ -221,39 +364,65 @@
 }
 
 
-/* =====================================
-   รองรับมือถือ
-===================================== */
+/* =========================================
+   MOBILE OPTIMIZATION
+========================================= */
 
 @media (max-width: 600px) {
 
     .magic-particle {
-        text-shadow: 0 0 5px #ffd77d;
+
+        text-shadow:
+            0 0 5px #ffd77d;
+
     }
 
-    .image-frame.magic-arrived {
-        box-shadow: 0 0 10px #d4b77d35;
+    @keyframes livingGlow {
+
+        0%, 100% {
+            box-shadow: 0 0 5px #d4b77d20;
+        }
+
+        50% {
+            box-shadow: 0 0 15px #d4b77d50;
+        }
+
     }
 
 }
 
 
-/* =====================================
-   รองรับผู้ที่ไม่ต้องการ Animation
-===================================== */
+/* หยุดเอฟเฟกต์เมื่อไม่ได้เปิดแท็บเว็บไซต์ */
+
+.magic-paused,
+.magic-paused .magic-particle,
+#instruction.magic-paused {
+
+    animation-play-state: paused !important;
+
+}
+
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    .magic-old-image,
-    .magic-particle {
+    .magic-particle-layer,
+    .magic-old-image {
+
         display: none !important;
+
     }
 
     .image-frame,
     #instruction,
     #progressBar {
+
         animation: none !important;
         transition: none !important;
+
     }
 
 }

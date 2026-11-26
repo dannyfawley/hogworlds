@@ -1,12 +1,58 @@
 
 // =========================================
-// HOGWORLDS PATHFINDER V1.8
-// MAGICAL NAVIGATION ANIMATION
+// HOGWORLDS PATHFINDER V1.8.1
+// LIVING MAGIC
+// CONTINUOUS NAVIGATION EFFECTS
 // =========================================
 
 (() => {
 
+    // =====================================
+    // ตั้งค่า Animation
+    // =====================================
+
+    const MAGIC_CONFIG = {
+
+        // ระยะเวลาเปลี่ยนภาพ
+
+        crossfadeDuration: 600,
+
+
+        // จำนวนประกายระหว่างเดินทาง
+
+        normalParticles: 24,
+
+
+        // จำนวนประกายเมื่อถึงจุดหมาย
+
+        arrivalParticles: 55,
+
+
+        // จำนวนประกายบนมือถือ
+
+        mobileNormalParticles: 12,
+
+        mobileArrivalParticles: 26,
+
+
+        // ระยะเวลาฉลองเมื่อถึงจุดหมาย
+        // 8000 = 8 วินาที
+
+        arrivalDuration: 8000,
+
+
+        // ความเร็วของประกายเวทมนตร์
+
+        particleMinDuration: 5,
+
+        particleMaxDuration: 10
+
+    };
+
+
+    // =====================================
     // ตรวจสอบระบบนำทางเดิม
+    // =====================================
 
     if (
         typeof showStep !== "function" ||
@@ -14,7 +60,7 @@
     ) {
 
         console.warn(
-            "Magical Navigation: Navigation system not found"
+            "Living Magic: Navigation system not found"
         );
 
         return;
@@ -37,8 +83,9 @@
     }
 
 
-    // เก็บฟังก์ชันเดิมไว้
-    // เพื่อรักษาระบบนำทางและรายการโปรด
+    // =====================================
+    // เก็บระบบนำทางเดิม
+    // =====================================
 
     const originalShowStep = showStep;
 
@@ -46,15 +93,21 @@
 
 
     let lastRoute = null;
+
     let lastStep = -1;
 
     let animationToken = 0;
 
     let pendingLoad = null;
+
     let pendingError = null;
 
+    let arrivalTimer = null;
 
-    // ตรวจสอบการตั้งค่าลดการเคลื่อนไหว
+
+    // =====================================
+    // ตรวจสอบการตั้งค่าการเคลื่อนไหว
+    // =====================================
 
     function reducedMotion() {
 
@@ -65,13 +118,25 @@
     }
 
 
+    function isMobile() {
+
+        return window.innerWidth <= 600;
+
+    }
+
+
     // =====================================
-    // ล้าง Animation เก่า
+    // ล้าง Animation เดิม
     // =====================================
 
     function clearMagic() {
 
         animationToken++;
+
+
+        clearTimeout(arrivalTimer);
+
+        arrivalTimer = null;
 
 
         if (pendingLoad) {
@@ -95,44 +160,110 @@
 
 
         pendingLoad = null;
+
         pendingError = null;
 
 
         frame.querySelectorAll(
-            ".magic-particle, .magic-old-image"
-        ).forEach(element => element.remove());
+            ".magic-particle-layer, " +
+            ".magic-particle, " +
+            ".magic-old-image"
+        ).forEach(element => {
+
+            element.remove();
+
+        });
 
 
         frame.classList.remove(
+
+            "magic-active",
+
             "magic-glow",
-            "magic-arrived"
+
+            "magic-arrived",
+
+            "magic-arrival-burst",
+
+            "magic-paused"
+
         );
 
 
         instruction.classList.remove(
-            "magic-success"
+
+            "magic-success",
+
+            "magic-paused"
+
         );
 
     }
 
 
     // =====================================
-    // สร้างประกายเวทมนตร์สีทอง
+    // สร้างประกายเวทมนตร์แบบต่อเนื่อง
     // =====================================
 
-    function createParticles(amount = 18) {
+    function createContinuousParticles(
+        isArrival = false
+    ) {
 
         if (reducedMotion()) return;
 
 
-        // ลดจำนวนอนุภาคบนมือถือ
+        // ลบกล่องอนุภาคเก่าออกก่อน
 
-        if (window.innerWidth <= 600) {
+        const oldLayer = frame.querySelector(
+            ".magic-particle-layer"
+        );
 
-            amount = Math.min(amount, 12);
+        if (oldLayer) {
+
+            oldLayer.remove();
 
         }
 
+
+        const layer =
+            document.createElement("div");
+
+
+        layer.className =
+            "magic-particle-layer";
+
+
+        layer.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        // กำหนดจำนวนอนุภาค
+
+        let amount;
+
+
+        if (isMobile()) {
+
+            amount = isArrival
+
+                ? MAGIC_CONFIG.mobileArrivalParticles
+
+                : MAGIC_CONFIG.mobileNormalParticles;
+
+        } else {
+
+            amount = isArrival
+
+                ? MAGIC_CONFIG.arrivalParticles
+
+                : MAGIC_CONFIG.normalParticles;
+
+        }
+
+
+        // สร้างอนุภาคจำนวนคงที่
 
         for (let i = 0; i < amount; i++) {
 
@@ -140,79 +271,133 @@
                 document.createElement("span");
 
 
-            particle.className = "magic-particle";
+            particle.className =
+                "magic-particle";
 
 
             particle.textContent =
-                i % 3 === 0 ? "✦" : "·";
+
+                i % 4 === 0
+
+                    ? "✦"
+
+                    : i % 7 === 0
+
+                        ? "✧"
+
+                        : "·";
 
 
-            particle.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
+            // ตำแหน่งแนวนอน
 
             particle.style.left =
-                `${5 + Math.random() * 90}%`;
+                `${4 + Math.random() * 92}%`;
 
+
+            // ตำแหน่งแนวตั้ง
 
             particle.style.top =
-                `${20 + Math.random() * 70}%`;
+                `${15 + Math.random() * 80}%`;
+
+
+            // ขนาดประกาย
+
+            const fontSize = isArrival
+
+                ? 9 + Math.random() * 14
+
+                : 7 + Math.random() * 10;
 
 
             particle.style.fontSize =
-                `${8 + Math.random() * 14}px`;
+                `${fontSize}px`;
+
+
+            // ความเร็วแบบสุ่ม
+
+            const duration =
+
+                MAGIC_CONFIG.particleMinDuration +
+
+                Math.random() *
+
+                (
+                    MAGIC_CONFIG.particleMaxDuration -
+
+                    MAGIC_CONFIG.particleMinDuration
+                );
 
 
             particle.style.setProperty(
+
+                "--duration",
+
+                `${duration}s`
+
+            );
+
+
+            // ให้ประกายเริ่มคนละจังหวะ
+
+            particle.style.setProperty(
+
+                "--delay",
+
+                `${-Math.random() * duration}s`
+
+            );
+
+
+            // ทิศทางการลอย
+
+            particle.style.setProperty(
+
                 "--drift",
+
                 `${Math.random() * 80 - 40}px`
+
             );
 
 
-            particle.style.animationDelay =
-                `${Math.random() * 0.15}s`;
-
-
-            frame.appendChild(particle);
-
-
-            particle.addEventListener(
-                "animationend",
-                () => particle.remove(),
-                { once: true }
-            );
-
-
-            // ป้องกันอนุภาคตกค้าง
-
-            setTimeout(() => {
-
-                particle.remove();
-
-            }, 1100);
+            layer.appendChild(particle);
 
         }
+
+
+        frame.appendChild(layer);
 
     }
 
 
     // =====================================
-    // เอฟเฟกต์เรืองแสง
+    // เอฟเฟกต์ระหว่างเดินทาง
+    // ทำงานต่อเนื่องตลอดเวลา
     // =====================================
 
-    function playMagicGlow() {
+    function playContinuousMagic() {
 
-        if (reducedMotion()) return;
+        frame.classList.remove(
 
-        frame.classList.remove("magic-glow");
+            "magic-arrived",
 
-        void frame.offsetWidth;
+            "magic-arrival-burst"
 
-        frame.classList.add("magic-glow");
+        );
 
-        createParticles(18);
+
+        instruction.classList.remove(
+            "magic-success"
+        );
+
+
+        frame.classList.add(
+            "magic-active"
+        );
+
+
+        createContinuousParticles(false);
+
+        updateVisibility();
 
     }
 
@@ -223,24 +408,100 @@
 
     function playArrivalEffect() {
 
-        frame.classList.remove("magic-glow");
+        frame.classList.remove(
+            "magic-active"
+        );
 
-        frame.classList.add("magic-arrived");
 
-        instruction.classList.add("magic-success");
+        frame.classList.add(
+            "magic-arrived"
+        );
 
+
+        instruction.classList.add(
+            "magic-success"
+        );
+
+
+        // เพิ่มจำนวนประกายเมื่อถึงจุดหมาย
+
+        createContinuousParticles(true);
+
+
+        // เอฟเฟกต์ฉลองพิเศษ 8 วินาที
 
         if (!reducedMotion()) {
 
-            createParticles(30);
+            frame.classList.add(
+                "magic-arrival-burst"
+            );
+
+
+            const token = animationToken;
+
+            arrivalTimer = setTimeout(() => {
+
+                if (token !== animationToken) {
+                    return;
+                }
+
+
+                // จบช่วงฉลอง
+                // แต่ประกายเวทมนตร์ยังคงอยู่
+
+                frame.classList.remove(
+                    "magic-arrival-burst"
+                );
+
+                arrivalTimer = null;
+
+            }, MAGIC_CONFIG.arrivalDuration);
 
         }
+
+
+        updateVisibility();
 
     }
 
 
     // =====================================
-    // ระบบเปลี่ยนภาพแบบ Crossfade
+    // หยุด Animation เมื่อสลับแท็บ
+    // =====================================
+
+    function updateVisibility() {
+
+        frame.classList.toggle(
+
+            "magic-paused",
+
+            document.hidden
+
+        );
+
+
+        instruction.classList.toggle(
+
+            "magic-paused",
+
+            document.hidden
+
+        );
+
+    }
+
+
+    document.addEventListener(
+
+        "visibilitychange",
+
+        updateVisibility
+
+    );
+
+
+    // =====================================
+    // ระบบเปลี่ยนภาพแบบ Smooth Crossfade
     // =====================================
 
     showStep = function (...args) {
@@ -255,10 +516,9 @@
         }
 
 
-        // เก็บภาพเดิมก่อนเปลี่ยนเส้นทาง
-
         const sameRoute =
             lastRoute === currentRoute;
+
 
         const changedStep =
             lastStep !== currentStep;
@@ -280,6 +540,8 @@
         let oldImage = null;
 
 
+        // เก็บภาพเดิมก่อนเปลี่ยน
+
         if (canCrossfade) {
 
             oldImage =
@@ -287,7 +549,9 @@
 
 
             oldImage.src =
+
                 routeImage.currentSrc ||
+
                 routeImage.src;
 
 
@@ -306,6 +570,8 @@
         }
 
 
+        // ล้าง Animation ก่อนเริ่มภาพใหม่
+
         clearMagic();
 
 
@@ -315,14 +581,14 @@
         const isLastStep =
 
             currentStep ===
+
             currentRoute.images.length - 1;
 
 
         lastRoute = currentRoute;
+
         lastStep = currentStep;
 
-
-        // นำภาพเดิมมาซ้อนชั่วคราว
 
         if (oldImage) {
 
@@ -335,20 +601,26 @@
 
 
         // =================================
-        // เมื่อภาพใหม่โหลดเสร็จ
+        // เมื่อภาพใหม่โหลดสำเร็จ
         // =================================
 
         function onImageReady() {
 
             if (
+
                 finished ||
+
                 token !== animationToken
+
             ) return;
 
 
             if (
+
                 !routeImage.complete ||
+
                 routeImage.naturalWidth === 0
+
             ) return;
 
 
@@ -356,22 +628,29 @@
 
 
             routeImage.removeEventListener(
+
                 "load",
+
                 onImageReady
+
             );
 
 
             routeImage.removeEventListener(
+
                 "error",
+
                 onImageError
+
             );
 
 
             pendingLoad = null;
+
             pendingError = null;
 
 
-            // ค่อย ๆ ทำให้ภาพเก่าจางลง
+            // ค่อย ๆ ทำให้ภาพเดิมจางลง
 
             if (oldImage) {
 
@@ -381,9 +660,13 @@
 
 
                 oldImage.addEventListener(
+
                     "animationend",
+
                     () => oldImage.remove(),
+
                     { once: true }
+
                 );
 
 
@@ -391,12 +674,12 @@
 
                     oldImage.remove();
 
-                }, 500);
+                }, MAGIC_CONFIG.crossfadeDuration + 100);
 
             }
 
 
-            // เอฟเฟกต์ตามสถานะการเดินทาง
+            // ตรวจสอบว่าถึงจุดหมายหรือยัง
 
             if (isLastStep) {
 
@@ -404,7 +687,7 @@
 
             } else {
 
-                playMagicGlow();
+                playContinuousMagic();
 
             }
 
@@ -412,14 +695,17 @@
 
 
         // =================================
-        // กรณีโหลดภาพไม่สำเร็จ
+        // เมื่อโหลดภาพไม่สำเร็จ
         // =================================
 
         function onImageError() {
 
             if (
+
                 finished ||
+
                 token !== animationToken
+
             ) return;
 
 
@@ -434,18 +720,25 @@
 
 
             routeImage.removeEventListener(
+
                 "load",
+
                 onImageReady
+
             );
 
 
             routeImage.removeEventListener(
+
                 "error",
+
                 onImageError
+
             );
 
 
             pendingLoad = null;
+
             pendingError = null;
 
         }
@@ -457,26 +750,35 @@
 
 
         routeImage.addEventListener(
+
             "load",
+
             onImageReady
+
         );
 
 
         routeImage.addEventListener(
+
             "error",
+
             onImageError
+
         );
 
 
         // เรียกใช้ระบบนำทางเดิม
 
         originalShowStep.apply(
+
             this,
+
             args
+
         );
 
 
-        // รองรับภาพที่โหลดจาก Cache แล้ว
+        // รองรับภาพที่โหลดจาก Cache
 
         if (routeImage.complete) {
 
@@ -496,26 +798,35 @@
 
 
     // =====================================
-    // ล้างเอฟเฟกต์เมื่อกลับหน้าหลัก
+    // เมื่อกลับหน้าหลัก
+    // หยุดและล้าง Animation ทั้งหมด
     // =====================================
 
     goHome = function (...args) {
 
         clearMagic();
 
+
         lastRoute = null;
+
         lastStep = -1;
 
+
         return originalGoHome.apply(
+
             this,
+
             args
+
         );
 
     };
 
 
     console.log(
-        "HOGWORLDS V1.8 — Magical Navigation Ready"
+
+        "HOGWORLDS V1.8.1 — Living Magic Ready"
+
     );
 
 })();
