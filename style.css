@@ -40,9 +40,9 @@ button:focus-visible {
 }
 
 
-/* ==============================
+/* =====================================
    ส่วนหัวเว็บไซต์
-================================ */
+===================================== */
 
 header {
     text-align: center;
@@ -72,9 +72,9 @@ header p {
 }
 
 
-/* ==============================
+/* =====================================
    พื้นที่หลัก
-================================ */
+===================================== */
 
 main {
     max-width: 1200px;
@@ -94,15 +94,15 @@ h2 {
 }
 
 
-/* ==============================
-   ระบบ TAB หมวดหมู่
-================================ */
+/* =====================================
+   ระบบ TAB ทั้ง 3 หมวด
+===================================== */
 
 .category-tabs {
     display: flex;
     gap: 8px;
 
-    max-width: 650px;
+    max-width: 850px;
     margin: 30px auto;
 
     padding: 6px;
@@ -114,6 +114,7 @@ h2 {
 
 .tab-button {
     flex: 1;
+    min-width: 0;
 
     border: 1px solid transparent;
     border-radius: 9px;
@@ -127,7 +128,6 @@ h2 {
     font-weight: bold;
 
     cursor: pointer;
-
     transition: all 0.2s ease;
 }
 
@@ -151,9 +151,9 @@ h2 {
 }
 
 
-/* ==============================
+/* =====================================
    การ์ดสถานที่
-================================ */
+===================================== */
 
 .room-grid {
     display: grid;
@@ -162,9 +162,17 @@ h2 {
     margin-top: 25px;
 }
 
+.room-wrapper {
+    position: relative;
+    min-width: 0;
+}
+
 .room-card {
+    width: 100%;
+    height: 100%;
     min-height: 210px;
-    padding: 25px 15px;
+
+    padding: 35px 15px 25px;
 
     border: 1px solid var(--gold-dark);
     border-radius: 14px;
@@ -190,7 +198,7 @@ h2 {
 }
 
 .room-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     border-color: var(--gold);
     box-shadow: 0 8px 30px #d4b77d20;
 }
@@ -217,9 +225,160 @@ h2 {
 }
 
 
-/* ==============================
+/* =====================================
+   FAVORITES — ปุ่มดาวรายการโปรด
+===================================== */
+
+.favorite-button {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    z-index: 2;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+    border-radius: 50%;
+
+    background: transparent;
+    color: #b6a575;
+
+    font-size: 29px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.favorite-button:hover {
+    color: #ffe3a3;
+    background: #d4b77d15;
+    transform: scale(1.1);
+}
+
+.favorite-button.is-favorite {
+    color: #efc76e;
+
+    text-shadow:
+        0 0 8px #e6bd6760,
+        0 0 18px #e6bd6730;
+}
+
+.favorite-button:active {
+    transform: scale(0.85);
+}
+
+.room-wrapper.is-favorite .room-card {
+    border-color: var(--gold);
+}
+
+.favorite-button.star-pop {
+    animation: starPop 0.35s ease;
+}
+
+@keyframes starPop {
+    0% {
+        transform: scale(0.8);
+    }
+
+    50% {
+        transform: scale(1.4);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* =====================================
+   หน้ารายการโปรดว่าง
+===================================== */
+
+.empty-favorites {
+    text-align: center;
+
+    border: 1px dashed var(--gold-dark);
+    border-radius: 14px;
+
+    max-width: 650px;
+
+    margin: 35px auto;
+    padding: 50px 20px;
+
+    background: #193b2c40;
+}
+
+.empty-star {
+    font-size: 70px;
+    line-height: 1;
+    color: var(--gold);
+}
+
+.empty-favorites p {
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 15px 0 25px;
+}
+
+
+/* =====================================
+   ข้อความแจ้งเตือนเมื่อกดดาว
+===================================== */
+
+.favorite-toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    z-index: 1000;
+
+    transform: translate(-50%, 20px);
+
+    max-width: calc(100% - 30px);
+    width: max-content;
+
+    padding: 14px 24px;
+
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+
+    background: #193b2c;
+    color: var(--gold);
+
+    text-align: center;
+    font-size: 14px;
+
+    box-shadow: 0 8px 25px #00000050;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.favorite-toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+
+/* =====================================
    หน้านำทาง
-================================ */
+===================================== */
 
 #navigation {
     max-width: 1100px;
@@ -239,6 +398,10 @@ h2 {
     border-radius: 10px;
     padding: 12px 20px;
     cursor: pointer;
+}
+
+.home-button:hover {
+    border-color: var(--gold);
 }
 
 .progress-info {
@@ -264,9 +427,9 @@ h2 {
 }
 
 
-/* ==============================
+/* =====================================
    ภาพนำทาง
-================================ */
+===================================== */
 
 .image-frame {
     background: #060e09;
@@ -290,9 +453,9 @@ h2 {
 }
 
 
-/* ==============================
+/* =====================================
    ปุ่มนำทาง
-================================ */
+===================================== */
 
 .navigation-buttons {
     display: flex;
@@ -341,9 +504,9 @@ h2 {
 }
 
 
-/* ==============================
+/* =====================================
    ส่วนท้ายเว็บไซต์
-================================ */
+===================================== */
 
 footer {
     text-align: center;
@@ -354,9 +517,9 @@ footer {
 }
 
 
-/* ==============================
+/* =====================================
    รองรับ Tablet
-================================ */
+===================================== */
 
 @media (max-width: 900px) {
 
@@ -367,9 +530,9 @@ footer {
 }
 
 
-/* ==============================
+/* =====================================
    รองรับมือถือ
-================================ */
+===================================== */
 
 @media (max-width: 600px) {
 
@@ -387,17 +550,18 @@ footer {
 
     .category-tabs {
         margin: 22px auto;
-        gap: 5px;
+        gap: 4px;
+        padding: 4px;
     }
 
     .tab-button {
-        padding: 13px 6px;
-        font-size: 14px;
+        padding: 13px 4px;
+        font-size: 12px;
     }
 
     .tab-button small {
-        font-size: 9px;
-        letter-spacing: 1px;
+        font-size: 8px;
+        letter-spacing: 0.5px;
     }
 
     .room-grid {
@@ -405,8 +569,8 @@ footer {
     }
 
     .room-card {
-        min-height: 165px;
-        padding: 18px 8px;
+        min-height: 175px;
+        padding: 30px 8px 15px;
     }
 
     .room-card h3 {
@@ -421,6 +585,12 @@ footer {
         font-size: 34px;
     }
 
+    .favorite-button {
+        top: 3px;
+        right: 3px;
+        font-size: 25px;
+    }
+
     .navigation-buttons button {
         padding: 14px 8px;
         font-size: 14px;
@@ -428,6 +598,12 @@ footer {
 
     #instruction {
         font-size: 17px;
+    }
+
+    .favorite-toast {
+        bottom: 18px;
+        font-size: 12px;
+        padding: 12px 18px;
     }
 
 }
@@ -438,12 +614,17 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .tab-button {
+        font-size: 11px;
+    }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
 
     * {
         transition: none !important;
+        animation: none !important;
     }
 
 }

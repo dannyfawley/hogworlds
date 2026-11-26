@@ -1,7 +1,7 @@
 
 // =========================================
-// HOGWORLDS PATHFINDER V1.6
-// UPDATED WORLD NAVIGATION ROUTES
+// HOGWORLDS PATHFINDER V1.7
+// FAVORITES UPDATE
 // =========================================
 
 
@@ -106,7 +106,7 @@ const routes = {
     },
 
 
-    // 06 เรือนกระจกสมุนไพร — UPDATED
+    // 06 เรือนกระจกสมุนไพร
 
     herbology: {
         name: "เรือนกระจก (สมุนไพร)",
@@ -139,7 +139,7 @@ const routes = {
     },
 
 
-    // 08 ห้องเล่นแร่แปรธาตุ — UPDATED
+    // 08 ห้องเล่นแร่แปรธาตุ
 
     alchemy: {
         name: "ห้องเล่นแร่แปรธาตุ",
@@ -155,6 +155,7 @@ const routes = {
             "102.jpg"
         ])
     },
+
 
     // 09 ห้องเต้นรำ — UPDATED
 
@@ -174,7 +175,7 @@ const routes = {
     },
 
 
-    // 10 ห้องเรียนการบิน — UPDATED
+    // 10 ห้องเรียนการบิน
 
     flying: {
         name: "ห้องเรียนการบิน",
@@ -210,7 +211,7 @@ const routes = {
     },
 
 
-    // 12 ลานเรียนแปลงกาย — UPDATED
+    // 12 ลานเรียนแปลงกาย
 
     transfiguration_yard: {
         name: "ลานเรียนแปลงกาย",
@@ -233,7 +234,7 @@ const routes = {
     // =====================================
 
 
-    // 13 ลานหินข้างปราสาท — UPDATED
+    // 13 ลานหินข้างปราสาท
 
     courtyard: {
         name: "ลานหินข้างปราสาท",
@@ -283,7 +284,7 @@ const routes = {
     },
 
 
-    // 16 คอกสัตว์วิเศษ — UPDATED
+    // 16 คอกสัตว์วิเศษ
 
     beasts: {
         name: "คอกสัตว์วิเศษ",
@@ -316,7 +317,7 @@ const routes = {
     },
 
 
-    // 18 หอดูดาว — UPDATED
+    // 18 หอดูดาว
 
     observatory: {
         name: "หอดูดาว",
@@ -366,7 +367,7 @@ const routes = {
     },
 
 
-    // 21 ห้องบำบัด — UPDATED
+    // 21 ห้องบำบัด
 
     therapy: {
         name: "ห้องบำบัด",
@@ -446,6 +447,161 @@ let currentCategory = "classroom";
 let currentRoute = null;
 let currentStep = 0;
 
+let toastTimer;
+
+const FAVORITES_KEY = "hogworlds_favorites";
+
+
+// =========================================
+// FAVORITES — โหลดรายการโปรดที่บันทึกไว้
+// =========================================
+
+function loadFavorites() {
+
+    try {
+
+        const saved = JSON.parse(
+            localStorage.getItem(FAVORITES_KEY) || "[]"
+        );
+
+        if (!Array.isArray(saved)) {
+            return [];
+        }
+
+        return [...new Set(saved.filter(id =>
+            typeof id === "string" &&
+            Object.prototype.hasOwnProperty.call(routes, id)
+        ))];
+
+    } catch (error) {
+
+        console.warn(
+            "ไม่สามารถโหลดรายการโปรดได้",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+let favorites = loadFavorites();
+
+
+// =========================================
+// FAVORITES — บันทึกรายการโปรด
+// =========================================
+
+function saveFavorites() {
+
+    try {
+
+        localStorage.setItem(
+            FAVORITES_KEY,
+            JSON.stringify(favorites)
+        );
+
+        return true;
+
+    } catch (error) {
+
+        console.warn(
+            "ไม่สามารถบันทึกรายการโปรดได้",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+// =========================================
+// FAVORITES — เพิ่มหรือลบรายการโปรด
+// =========================================
+
+function toggleFavorite(id) {
+
+    if (!Object.prototype.hasOwnProperty.call(routes, id)) {
+        return;
+    }
+
+    const alreadyFavorite = favorites.includes(id);
+
+    if (alreadyFavorite) {
+
+        favorites = favorites.filter(
+            favoriteId => favoriteId !== id
+        );
+
+    } else {
+
+        favorites.push(id);
+
+    }
+
+    const saved = saveFavorites();
+
+    renderRooms();
+
+    const message = alreadyFavorite
+        ? `นำ${routes[id].name}ออกจากรายการโปรดแล้ว`
+        : `★ เพิ่ม${routes[id].name}ในรายการโปรดแล้ว`;
+
+    showToast(
+        saved
+            ? message
+            : message + " (เฉพาะการเปิดเว็บครั้งนี้)"
+    );
+
+    const starButton = document.querySelector(
+        `[data-favorite-id="${id}"]`
+    );
+
+    if (starButton) {
+
+        starButton.focus({ preventScroll: true });
+
+        if (!alreadyFavorite) {
+            starButton.classList.add("star-pop");
+        }
+
+    } else {
+
+        document.getElementById("favoritesTab").focus({
+            preventScroll: true
+        });
+
+    }
+
+}
+
+
+// =========================================
+// ข้อความแจ้งเตือน
+// =========================================
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("favoriteToast");
+
+    clearTimeout(toastTimer);
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    toastTimer = setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 2200);
+
+}
+
 
 // =========================================
 // ระบบสลับหมวดหมู่ TAB
@@ -453,38 +609,41 @@ let currentStep = 0;
 
 function selectCategory(category) {
 
-    if (
-        category !== "classroom" &&
-        category !== "location"
-    ) return;
+    const validCategories = [
+        "classroom",
+        "location",
+        "favorites"
+    ];
+
+    if (!validCategories.includes(category)) {
+        return;
+    }
 
     currentCategory = category;
 
-    const classroomTab =
-        document.getElementById("classroomTab");
+    const tabs = {
+        classroom: "classroomTab",
+        location: "locationTab",
+        favorites: "favoritesTab"
+    };
 
-    const locationTab =
-        document.getElementById("locationTab");
+    Object.entries(tabs).forEach(([key, elementId]) => {
 
-    classroomTab.classList.toggle(
-        "active",
-        category === "classroom"
-    );
+        const tab = document.getElementById(elementId);
 
-    locationTab.classList.toggle(
-        "active",
-        category === "location"
-    );
+        const isActive = key === category;
 
-    classroomTab.setAttribute(
-        "aria-pressed",
-        category === "classroom"
-    );
+        tab.classList.toggle(
+            "active",
+            isActive
+        );
 
-    locationTab.setAttribute(
-        "aria-pressed",
-        category === "location"
-    );
+        tab.setAttribute(
+            "aria-pressed",
+            String(isActive)
+        );
+
+    });
 
     renderRooms();
 
@@ -497,19 +656,67 @@ function selectCategory(category) {
 
 function renderRooms() {
 
-    const grid = document.getElementById("roomGrid");
+    const grid =
+        document.getElementById("roomGrid");
+
+    const emptyFavorites =
+        document.getElementById("emptyFavorites");
 
     grid.innerHTML = "";
 
-    Object.entries(routes).forEach(([id, room]) => {
 
-        if (room.category !== currentCategory) {
-            return;
-        }
+    // กรองสถานที่ตามหมวดหมู่
+
+    const visibleRooms = Object.entries(routes)
+        .filter(([id, room]) => {
+
+            if (currentCategory === "favorites") {
+
+                return favorites.includes(id);
+
+            }
+
+            return room.category === currentCategory;
+
+        });
+
+
+    // แสดงข้อความเมื่อไม่มีรายการโปรด
+
+    const isEmpty =
+        currentCategory === "favorites" &&
+        visibleRooms.length === 0;
+
+    emptyFavorites.hidden = !isEmpty;
+
+    grid.hidden = isEmpty;
+
+
+    // สร้างการ์ดแต่ละสถานที่
+
+    visibleRooms.forEach(([id, room]) => {
+
+        const isFavorite = favorites.includes(id);
+
+
+        // กล่องครอบการ์ด
+
+        const wrapper = document.createElement("div");
+
+        wrapper.className = "room-wrapper";
+
+        wrapper.classList.toggle(
+            "is-favorite",
+            isFavorite
+        );
+
+
+        // ปุ่มเข้าสู่เส้นทาง
 
         const button = document.createElement("button");
 
         button.className = "room-card";
+
         button.type = "button";
 
         button.innerHTML = `
@@ -519,10 +726,67 @@ function renderRooms() {
         `;
 
         button.addEventListener("click", () => {
+
             startRoute(id);
+
         });
 
-        grid.appendChild(button);
+
+        // ปุ่มดาวรายการโปรด
+
+        const favoriteButton =
+            document.createElement("button");
+
+        favoriteButton.type = "button";
+
+        favoriteButton.className = "favorite-button";
+
+        favoriteButton.classList.toggle(
+            "is-favorite",
+            isFavorite
+        );
+
+        favoriteButton.textContent =
+            isFavorite ? "★" : "☆";
+
+        favoriteButton.dataset.favoriteId = id;
+
+        favoriteButton.title = isFavorite
+            ? "นำออกจากรายการโปรด"
+            : "เพิ่มรายการโปรด";
+
+        favoriteButton.setAttribute(
+            "aria-label",
+            `${favoriteButton.title}: ${room.name}`
+        );
+
+        favoriteButton.setAttribute(
+            "aria-pressed",
+            String(isFavorite)
+        );
+
+
+        // กดดาวโดยไม่เข้าสู่หน้านำทาง
+
+        favoriteButton.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+                toggleFavorite(id);
+
+            }
+        );
+
+
+        // เพิ่มการ์ดและปุ่มดาวลงในหน้าหลัก
+
+        wrapper.appendChild(button);
+
+        wrapper.appendChild(favoriteButton);
+
+        grid.appendChild(wrapper);
 
     });
 
@@ -723,6 +987,10 @@ function goHome() {
     currentStep = 0;
     currentRoute = null;
 
+
+    // กลับไปยัง TAB ที่เลือกไว้
+    // รวมถึง TAB รายการโปรด
+
     selectCategory(currentCategory);
 
     window.scrollTo(0, 0);
@@ -761,6 +1029,26 @@ document.addEventListener("keydown", event => {
     if (event.key === "Escape") {
 
         goHome();
+
+    }
+
+});
+
+
+// =========================================
+// ซิงค์รายการโปรดระหว่างแท็บเบราว์เซอร์
+// =========================================
+
+window.addEventListener("storage", event => {
+
+    if (
+        event.key === FAVORITES_KEY ||
+        event.key === null
+    ) {
+
+        favorites = loadFavorites();
+
+        renderRooms();
 
     }
 

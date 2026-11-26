@@ -4,7 +4,6 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
@@ -70,7 +69,6 @@
                     aria-pressed="true">
 
                     📖 ห้องเรียน
-
                     <small>CLASSROOMS</small>
 
                 </button>
@@ -83,8 +81,21 @@
                     aria-pressed="false">
 
                     📍 สถานที่ทั่วไป
-
                     <small>LOCATIONS</small>
+
+                </button>
+
+
+                <!-- TAB รายการโปรด -->
+
+                <button
+                    id="favoritesTab"
+                    class="tab-button"
+                    onclick="selectCategory('favorites')"
+                    aria-pressed="false">
+
+                    ★ รายการโปรด
+                    <small>FAVORITES</small>
 
                 </button>
 
@@ -94,6 +105,32 @@
             <!-- การ์ดสถานที่ -->
 
             <div class="room-grid" id="roomGrid">
+            </div>
+
+
+            <!-- เมื่อยังไม่มีรายการโปรด -->
+
+            <div id="emptyFavorites"
+                 class="empty-favorites"
+                 hidden>
+
+                <div class="empty-star">☆</div>
+
+                <h2>ยังไม่มีรายการโปรด</h2>
+
+                <p>
+                    กดดาวที่สถานที่ที่คุณเดินทางไปบ่อย
+                    เพื่อบันทึกไว้ที่นี่
+                </p>
+
+                <button
+                    class="home-button"
+                    onclick="selectCategory('classroom')">
+
+                    เลือกสถานที่
+
+                </button>
+
             </div>
 
         </section>
@@ -119,16 +156,13 @@
             <div class="progress-info">
 
                 <span id="stepCounter"></span>
-
                 <span id="percentage"></span>
 
             </div>
 
 
             <div class="progress-track">
-
                 <div id="progressBar"></div>
-
             </div>
 
 
@@ -180,10 +214,19 @@
         <p>✦ HOGWORLDS PATHFINDER ✦</p>
 
         <small>
-            Interactive World Navigation · V1.6
+            Interactive World Navigation · V1.7
         </small>
 
     </footer>
+
+
+    <!-- ข้อความแจ้งเตือนรายการโปรด -->
+
+    <div id="favoriteToast"
+         class="favorite-toast"
+         role="status"
+         aria-live="polite">
+    </div>
 
 
     <script src="script.js"></script>
