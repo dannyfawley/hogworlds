@@ -11,7 +11,6 @@
 
     <title>HOGWORLDS PATHFINDER</title>
 
-
     <!-- WEBSITE DESCRIPTION -->
 
     <meta name="description"
@@ -51,45 +50,32 @@
     <link rel="stylesheet"
           href="smart.css?v=2.0.1">
 
+    <link rel="stylesheet"
+          href="icons.css?v=2.0.1">
+
 
     <style>
 
-        /* =====================================
+        /* =================================
            COMPACT HEADER
-        ===================================== */
+        ================================= */
 
         header {
-
             text-align: center;
-
             padding: 24px 20px 6px;
-
         }
-
 
         .crest {
-
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
             margin: 0 0 4px;
-
         }
 
-
-        /* โลโก้เว็บไซต์ */
-
         .site-logo {
-
             display: block;
-
             width: 150px;
-
             max-width: 45vw;
-
             height: auto;
 
             filter: drop-shadow(
@@ -104,16 +90,11 @@
 
             transition:
                 transform 0.4s ease;
-
         }
-
 
         .site-logo:hover {
-
             transform: scale(1.06);
-
         }
-
 
         @keyframes logoBreathing {
 
@@ -135,150 +116,87 @@
 
         }
 
-
-        /* HOGWORLDS */
-
         header h1 {
-
             margin: 4px 0 8px;
-
             line-height: 1.2;
-
         }
 
-
-        /* แผนที่เดินทางของ DANNY */
-
         header .site-tagline {
-
             font-size: 20px;
-
             font-weight: 500;
-
             color: #d4b77d;
-
             letter-spacing: 0.5px;
-
             line-height: 1.5;
-
             margin: 6px 0 0;
 
             text-shadow:
                 0 0 10px #d4b77d25;
-
         }
-
-
-        /* COMPACT HOME PAGE */
 
         main {
-
             padding-top: 18px;
-
         }
-
 
         #home > h2 {
-
             font-size: 24px;
-
             margin: 0 0 16px;
-
             line-height: 1.5;
-
         }
-
 
         .category-tabs {
-
             margin: 12px auto 20px;
-
         }
-
 
         .room-grid {
-
             margin-top: 16px;
-
         }
 
 
-        /* =====================================
-           MOBILE RESPONSIVE
-        ===================================== */
+        /* MOBILE RESPONSIVE */
 
         @media (max-width: 600px) {
 
             header {
-
                 padding: 18px 12px 4px;
-
             }
-
 
             .site-logo {
-
                 width: 115px;
-
             }
-
 
             header h1 {
-
                 margin: 4px 0 6px;
-
             }
-
 
             header .site-tagline {
-
                 font-size: 16px;
-
                 margin: 4px 0 0;
-
             }
-
 
             main {
-
                 padding-top: 14px;
-
             }
-
 
             #home > h2 {
-
                 font-size: 20px;
-
                 margin-bottom: 12px;
-
             }
-
 
             .category-tabs {
-
                 margin: 10px auto 14px;
-
             }
 
-
             .room-grid {
-
                 margin-top: 12px;
-
             }
 
         }
 
-
         @media (prefers-reduced-motion: reduce) {
 
             .site-logo {
-
                 animation: none;
-
                 transition: none;
-
             }
 
         }
@@ -306,9 +224,7 @@
 
         </div>
 
-
         <h1>HOGWORLDS</h1>
-
 
         <p class="site-tagline">
 
@@ -322,23 +238,16 @@
     <main>
 
 
-        <!-- =====================================
+        <!-- =================================
              HOME PAGE
-        ====================================== -->
+        ================================== -->
 
         <section id="home">
 
-
-            <h2>
-
-                เลือกจุดหมายปลายทาง
-
-            </h2>
+            <h2>เลือกจุดหมายปลายทาง</h2>
 
 
-            <!-- =================================
-                 QUICK SEARCH
-            ================================== -->
+            <!-- QUICK SEARCH -->
 
             <div
                 class="smart-search"
@@ -357,13 +266,11 @@
                         cx="11"
                         cy="11"
                         r="7">
-
                     </circle>
 
                     <path d="m16 16 5 5"></path>
 
                 </svg>
-
 
                 <input
                     type="search"
@@ -371,7 +278,6 @@
                     placeholder="ค้นหาห้องเรียน หรือสถานที่..."
                     aria-label="ค้นหาสถานที่"
                     autocomplete="off">
-
 
                 <button
                     type="button"
@@ -387,24 +293,16 @@
             </div>
 
 
-            <!-- =================================
-                 RECENTLY VISITED
-            ================================== -->
+            <!-- RECENTLY VISITED -->
 
             <section
                 id="recentSection"
                 class="recent-section"
                 hidden>
 
-
                 <div class="recent-heading">
 
-                    <h3>
-
-                        🕒 เดินทางล่าสุด
-
-                    </h3>
-
+                    <h3>🕒 เดินทางล่าสุด</h3>
 
                     <button
                         type="button"
@@ -417,24 +315,17 @@
 
                 </div>
 
-
                 <div
                     id="recentGrid"
                     class="recent-grid">
-
                 </div>
 
             </section>
 
 
-            <!-- =================================
-                 TAB ทั้ง 3 หมวด
-            ================================== -->
+            <!-- CATEGORY TABS -->
 
             <div class="category-tabs">
-
-
-                <!-- ห้องเรียน -->
 
                 <button
                     type="button"
@@ -450,8 +341,6 @@
                 </button>
 
 
-                <!-- สถานที่ทั่วไป -->
-
                 <button
                     type="button"
                     id="locationTab"
@@ -465,8 +354,6 @@
 
                 </button>
 
-
-                <!-- รายการโปรด -->
 
                 <button
                     type="button"
@@ -484,33 +371,30 @@
             </div>
 
 
-            <!-- จำนวนผลการค้นหา -->
+            <!-- SEARCH STATUS -->
 
             <p
                 id="searchStatus"
                 role="status"
                 aria-live="polite"
                 hidden>
-
             </p>
 
 
-            <!-- การ์ดสถานที่ทั้งหมด -->
+            <!-- LOCATION CARDS -->
 
             <div
                 class="room-grid"
                 id="roomGrid">
-
             </div>
 
 
-            <!-- เมื่อค้นหาไม่พบ -->
+            <!-- EMPTY SEARCH RESULT -->
 
             <div
                 id="searchEmpty"
                 class="search-empty"
                 hidden>
-
 
                 <div class="search-empty-icon">
 
@@ -518,13 +402,7 @@
 
                 </div>
 
-
-                <h3>
-
-                    ไม่พบสถานที่ที่ค้นหา
-
-                </h3>
-
+                <h3>ไม่พบสถานที่ที่ค้นหา</h3>
 
                 <p>
 
@@ -536,13 +414,12 @@
             </div>
 
 
-            <!-- เมื่อไม่มีรายการโปรด -->
+            <!-- EMPTY FAVORITES -->
 
             <div
                 id="emptyFavorites"
                 class="empty-favorites"
                 hidden>
-
 
                 <div class="empty-star">
 
@@ -550,13 +427,7 @@
 
                 </div>
 
-
-                <h2>
-
-                    ยังไม่มีรายการโปรด
-
-                </h2>
-
+                <h2>ยังไม่มีรายการโปรด</h2>
 
                 <p>
 
@@ -564,7 +435,6 @@
                     เพื่อบันทึกไว้ที่นี่
 
                 </p>
-
 
                 <button
                     type="button"
@@ -580,17 +450,16 @@
         </section>
 
 
-        <!-- =====================================
+        <!-- =================================
              NAVIGATION PAGE
-        ====================================== -->
+        ================================== -->
 
         <section id="navigation" hidden>
 
 
-            <!-- ปุ่มกลับหน้าหลักและแชร์ลิงก์ -->
+            <!-- NAVIGATION TOPBAR -->
 
             <div class="navigation-topbar">
-
 
                 <button
                     type="button"
@@ -600,7 +469,6 @@
                     ← กลับหน้าหลัก
 
                 </button>
-
 
                 <button
                     type="button"
@@ -614,14 +482,14 @@
             </div>
 
 
-            <!-- ชื่อสถานที่ -->
+            <!-- ROOM NAME AND ICON -->
 
             <h2 id="roomName"></h2>
 
             <p id="roomEnglish"></p>
 
 
-            <!-- ความคืบหน้าการเดินทาง -->
+            <!-- PROGRESS -->
 
             <div class="progress-info">
 
@@ -631,7 +499,6 @@
 
             </div>
 
-
             <div class="progress-track">
 
                 <div id="progressBar"></div>
@@ -639,7 +506,7 @@
             </div>
 
 
-            <!-- ภาพนำทางและ Animation -->
+            <!-- ROUTE IMAGE -->
 
             <div class="image-frame">
 
@@ -649,14 +516,12 @@
 
             </div>
 
-
             <p id="instruction"></p>
 
 
-            <!-- ปุ่มควบคุมการเดินทาง -->
+            <!-- NAVIGATION BUTTONS -->
 
             <div class="navigation-buttons">
-
 
                 <button
                     type="button"
@@ -666,7 +531,6 @@
                     ← ย้อนกลับ
 
                 </button>
-
 
                 <button
                     type="button"
@@ -680,7 +544,7 @@
             </div>
 
 
-            <!-- เริ่มเส้นทางใหม่ -->
+            <!-- RESTART ROUTE -->
 
             <button
                 type="button"
@@ -717,13 +581,12 @@
         class="favorite-toast"
         role="status"
         aria-live="polite">
-
     </div>
 
 
     <!-- =====================================
          JAVASCRIPT
-         ลำดับการโหลดมีความสำคัญ
+         DO NOT CHANGE LOADING ORDER
     ====================================== -->
 
     <script src="script.js?v=2.0"></script>
@@ -731,6 +594,8 @@
     <script src="animation.js?v=1.8.1"></script>
 
     <script src="smart.js?v=2.0.1"></script>
+
+    <script src="icons.js?v=2.0.1"></script>
 
 
 </body>

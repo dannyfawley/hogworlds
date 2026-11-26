@@ -1,0 +1,257 @@
+
+/* =========================================
+   HOGWORLDS PATHFINDER V2.0.1
+   GOLDEN MAGICAL ICONS
+========================================= */
+
+:root {
+    --icon-gold: #d4b77d;
+    --icon-glow: rgba(212, 183, 125, 0.35);
+}
+
+
+/* =========================================
+   MAIN LOCATION ICONS
+========================================= */
+
+.room-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 100px;
+
+    margin: 0 auto 8px;
+}
+
+.magical-icon {
+    display: inline-block;
+
+    width: 100px;
+    height: 100px;
+
+    max-width: 100%;
+
+    object-fit: contain;
+
+    vertical-align: middle;
+
+    user-select: none;
+    pointer-events: none;
+
+    filter: drop-shadow(
+        0 0 7px rgba(212, 183, 125, 0.25)
+    );
+
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+
+/* =========================================
+   ROOM CARD SIZE
+========================================= */
+
+.room-card {
+    min-height: 230px;
+}
+
+
+/* =========================================
+   MAGICAL HOVER EFFECT
+========================================= */
+
+.room-card:hover .magical-icon,
+.room-card:focus-visible .magical-icon {
+
+    transform:
+        translateY(-4px)
+        scale(1.08);
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(212, 183, 125, 0.65)
+        )
+        drop-shadow(
+            0 0 15px rgba(30, 150, 95, 0.25)
+        );
+
+}
+
+
+/* =========================================
+   RECENTLY VISITED ICONS
+========================================= */
+
+.recent-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+}
+
+.recent-icon .magical-icon {
+    width: 42px;
+    height: 42px;
+
+    filter: drop-shadow(
+        0 0 5px rgba(212, 183, 125, 0.3)
+    );
+}
+
+.recent-card:hover .magical-icon {
+
+    transform: scale(1.1);
+
+    filter: drop-shadow(
+        0 0 9px rgba(212, 183, 125, 0.65)
+    );
+
+}
+
+
+/* =========================================
+   NAVIGATION PAGE ICON
+========================================= */
+
+#roomName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+#roomName .magical-icon {
+
+    width: 64px;
+    height: 64px;
+
+    flex-shrink: 0;
+
+    animation:
+        magicalIconBreathing
+        4s
+        ease-in-out
+        infinite;
+
+}
+
+
+/* =========================================
+   GOLDEN BREATHING ANIMATION
+========================================= */
+
+@keyframes magicalIconBreathing {
+
+    0%, 100% {
+
+        filter: drop-shadow(
+            0 0 5px rgba(212, 183, 125, 0.25)
+        );
+
+    }
+
+    50% {
+
+        filter: drop-shadow(
+            0 0 14px rgba(212, 183, 125, 0.65)
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   FALLBACK EMOJI
+========================================= */
+
+.magical-icon-fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 44px;
+
+    line-height: 1;
+}
+
+.recent-icon .magical-icon-fallback {
+    font-size: 24px;
+}
+
+#roomName .magical-icon-fallback {
+    font-size: 32px;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .room-card {
+        min-height: 190px;
+    }
+
+    .room-icon {
+        min-height: 80px;
+        margin-bottom: 6px;
+    }
+
+    .magical-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .recent-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .recent-icon .magical-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    #roomName {
+        gap: 8px;
+    }
+
+    #roomName .magical-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION SUPPORT
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .magical-icon {
+        transition: none;
+    }
+
+    #roomName .magical-icon {
+        animation: none;
+    }
+
+    .room-card:hover .magical-icon,
+    .recent-card:hover .magical-icon {
+        transform: none;
+    }
+
+}
