@@ -1,6 +1,6 @@
 
 // =========================================
-// HOGWORLDS PATHFINDER V1.5
+// HOGWORLDS PATHFINDER V1.6
 // WORLD EXPANSION
 // =========================================
 
@@ -13,7 +13,7 @@ function getImages(folder, files) {
 
 
 // =========================================
-// ข้อมูลสถานที่ทั้งหมด
+// หมวดห้องเรียน CLASSROOMS
 // =========================================
 
 const routes = {
@@ -71,7 +71,7 @@ const routes = {
     },
 
 
-        // 04 ห้องวิชาแปลงกาย
+    // 04 ห้องวิชาแปลงกาย
 
     transfiguration: {
         name: "ห้องวิชาแปลงกาย",
@@ -191,7 +191,7 @@ const routes = {
     },
 
 
-    // 11 ห้องเรียนดาราศาสตร์ — UPDATED
+    // 11 ห้องเรียนดาราศาสตร์
 
     astronomy: {
         name: "ห้องเรียนดาราศาสตร์",
@@ -263,7 +263,7 @@ const routes = {
     },
 
 
-    // 15 สวนมิสเฟลอร์
+    // 15 สวนมิสเฟลอร์ — UPDATED
 
     garden: {
         name: "สวนมิสเฟลอร์",
@@ -272,10 +272,12 @@ const routes = {
         category: "location",
 
         images: getImages("garden", [
-            "49.jpg",
-            "50.jpg",
-            "51.jpg",
-            "52.jpg"
+            "81.jpg",
+            "82.jpg",
+            "83.jpg",
+            "84.jpg",
+            "85.jpg",
+            "86.jpg"
         ])
     },
 
@@ -331,7 +333,7 @@ const routes = {
     },
 
 
-    // 19 สนามซ้อมควิดดิช — NEW
+    // 19 สนามซ้อมควิดดิช
 
     quidditch_training: {
         name: "สนามซ้อมควิดดิช",
@@ -346,7 +348,7 @@ const routes = {
     },
 
 
-    // 20 ลานดาราศาสตร์ — NEW
+    // 20 ลานดาราศาสตร์
 
     astronomy_yard: {
         name: "ลานดาราศาสตร์",
@@ -363,7 +365,7 @@ const routes = {
     },
 
 
-    // 21 ห้องบำบัด — NEW
+    // 21 ห้องบำบัด
 
     therapy: {
         name: "ห้องบำบัด",
@@ -378,6 +380,57 @@ const routes = {
             "63.jpg",
             "64.jpg",
             "65.jpg"
+        ])
+    },
+
+
+    // 22 ศาลามิสเฟลอร์ — NEW
+
+    pavilion: {
+        name: "ศาลามิสเฟลอร์",
+        english: "Ms. Fleurs' Pavilion",
+        icon: "⛲",
+        category: "location",
+
+        images: getImages("pavilion", [
+            "87.jpg",
+            "88.jpg",
+            "89.jpg",
+            "90.jpg"
+        ])
+    },
+
+
+    // 23 ห้องสมุด — NEW
+
+    library: {
+        name: "ห้องสมุด",
+        english: "Library",
+        icon: "📚",
+        category: "location",
+
+        images: getImages("library", [
+            "74.jpg",
+            "75.jpg",
+            "76.jpg",
+            "77.jpg",
+            "78.jpg",
+            "79.jpg",
+            "80.jpg"
+        ])
+    },
+
+
+    // 24 ป่าต้องห้าม — NEW
+
+    forbidden_forest: {
+        name: "ป่าต้องห้าม",
+        english: "Forbidden Forest",
+        icon: "🌲",
+        category: "location",
+
+        images: getImages("forbidden_forest", [
+            "1.png"
         ])
     }
 
