@@ -1,9 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
@@ -24,9 +26,20 @@
     <meta property="og:type"
           content="website">
 
-    <link rel="stylesheet" href="style.css">
+
+    <!-- CSS หลัก -->
+
+    <link rel="stylesheet"
+          href="style.css?v=1.8">
+
+
+    <!-- CSS Animation -->
+
+    <link rel="stylesheet"
+          href="animation.css?v=1.8">
 
 </head>
+
 
 <body>
 
@@ -58,7 +71,7 @@
             </p>
 
 
-            <!-- ระบบสลับหมวดหมู่ -->
+            <!-- TAB ทั้ง 3 หมวด -->
 
             <div class="category-tabs">
 
@@ -85,8 +98,6 @@
 
                 </button>
 
-
-                <!-- TAB รายการโปรด -->
 
                 <button
                     id="favoritesTab"
@@ -140,8 +151,9 @@
 
         <section id="navigation" hidden>
 
-            <button class="home-button"
-                    onclick="goHome()">
+            <button
+                class="home-button"
+                onclick="goHome()">
 
                 ← กลับหน้าหลัก
 
@@ -153,23 +165,31 @@
             <p id="roomEnglish"></p>
 
 
+            <!-- ความคืบหน้า -->
+
             <div class="progress-info">
 
                 <span id="stepCounter"></span>
+
                 <span id="percentage"></span>
 
             </div>
 
 
             <div class="progress-track">
+
                 <div id="progressBar"></div>
+
             </div>
 
 
+            <!-- ภาพนำทางพร้อม Animation -->
+
             <div class="image-frame">
 
-                <img id="routeImage"
-                     alt="ภาพเส้นทางจากในเกม">
+                <img
+                    id="routeImage"
+                    alt="ภาพเส้นทางจากในเกม">
 
             </div>
 
@@ -177,18 +197,22 @@
             <p id="instruction"></p>
 
 
+            <!-- ปุ่มควบคุม -->
+
             <div class="navigation-buttons">
 
-                <button id="prevButton"
-                        onclick="previousStep()">
+                <button
+                    id="prevButton"
+                    onclick="previousStep()">
 
                     ← ย้อนกลับ
 
                 </button>
 
 
-                <button id="nextButton"
-                        onclick="nextStep()">
+                <button
+                    id="nextButton"
+                    onclick="nextStep()">
 
                     เดินทางต่อ →
 
@@ -197,8 +221,9 @@
             </div>
 
 
-            <button class="restart-button"
-                    onclick="restartRoute()">
+            <button
+                class="restart-button"
+                onclick="restartRoute()">
 
                 ↻ เริ่มเส้นทางใหม่
 
@@ -214,22 +239,32 @@
         <p>✦ HOGWORLDS PATHFINDER ✦</p>
 
         <small>
-            Interactive World Navigation · V1.7
+            Interactive World Navigation · V1.8
         </small>
 
     </footer>
 
 
-    <!-- ข้อความแจ้งเตือนรายการโปรด -->
+    <!-- แจ้งเตือนรายการโปรด -->
 
-    <div id="favoriteToast"
-         class="favorite-toast"
-         role="status"
-         aria-live="polite">
+    <div
+        id="favoriteToast"
+        class="favorite-toast"
+        role="status"
+        aria-live="polite">
+
     </div>
 
 
-    <script src="script.js"></script>
+    <!-- JavaScript หลัก -->
+
+    <script src="script.js?v=1.8"></script>
+
+
+    <!-- JavaScript Animation -->
+
+    <script src="animation.js?v=1.8"></script>
 
 </body>
+
 </html>

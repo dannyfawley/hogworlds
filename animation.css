@@ -1,0 +1,259 @@
+
+/* =====================================
+   HOGWORLDS PATHFINDER V1.8
+   MAGICAL NAVIGATION ANIMATION
+===================================== */
+
+
+/* กรอบภาพนำทาง */
+
+.image-frame {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    transition:
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+/* ภาพหลัก */
+
+#routeImage {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+
+/* ภาพเก่าที่ใช้ทำ Crossfade */
+
+.magic-old-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+.magic-old-image.fade-out {
+    animation: magicCrossfade 0.4s ease-in-out forwards;
+}
+
+@keyframes magicCrossfade {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+
+}
+
+
+/* =====================================
+   GOLDEN GLOW
+===================================== */
+
+.image-frame.magic-glow {
+    animation: goldenGlow 0.7s ease-out;
+}
+
+@keyframes goldenGlow {
+
+    0% {
+        box-shadow: 0 0 0 transparent;
+    }
+
+    45% {
+        border-color: #ffe8ad;
+
+        box-shadow:
+            0 0 12px #e4c37880,
+            0 0 28px #e4c37845;
+    }
+
+    100% {
+        box-shadow: 0 0 0 transparent;
+    }
+
+}
+
+
+/* =====================================
+   MAGICAL PARTICLES
+===================================== */
+
+.magic-particle {
+    position: absolute;
+
+    z-index: 5;
+
+    color: #ffe5a0;
+
+    pointer-events: none;
+    user-select: none;
+
+    text-shadow:
+        0 0 6px #ffd77d,
+        0 0 12px #ffd77d80;
+
+    animation:
+        magicParticleFloat 0.8s ease-out forwards;
+}
+
+@keyframes magicParticleFloat {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(0, 12px)
+            scale(0.3);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(var(--drift), -65px)
+            scale(0.3);
+    }
+
+}
+
+
+/* =====================================
+   DESTINATION REACHED
+===================================== */
+
+.image-frame.magic-arrived {
+
+    border-color: #f2d18b;
+
+    box-shadow:
+        0 0 18px #d4b77d35;
+
+    animation: destinationGlow 1.2s ease-out;
+}
+
+@keyframes destinationGlow {
+
+    0% {
+        box-shadow: 0 0 0 transparent;
+    }
+
+    45% {
+        box-shadow:
+            0 0 20px #ffe0a080,
+            0 0 40px #d4b77d50;
+    }
+
+    100% {
+        box-shadow:
+            0 0 18px #d4b77d35;
+    }
+
+}
+
+
+/* ข้อความเมื่อถึงจุดหมาย */
+
+#instruction.magic-success {
+    color: #f5d58e;
+
+    font-weight: bold;
+    letter-spacing: 0.5px;
+
+    animation:
+        successText 0.6s ease-out;
+}
+
+@keyframes successText {
+
+    from {
+        opacity: 0.4;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =====================================
+   SMOOTH PROGRESS BAR
+===================================== */
+
+#progressBar {
+
+    transition:
+        width 0.4s cubic-bezier(
+            0.22, 1, 0.36, 1
+        );
+
+    background: linear-gradient(
+        90deg,
+        #a98b50,
+        #d4b77d,
+        #f3d595
+    );
+
+}
+
+
+/* =====================================
+   รองรับมือถือ
+===================================== */
+
+@media (max-width: 600px) {
+
+    .magic-particle {
+        text-shadow: 0 0 5px #ffd77d;
+    }
+
+    .image-frame.magic-arrived {
+        box-shadow: 0 0 10px #d4b77d35;
+    }
+
+}
+
+
+/* =====================================
+   รองรับผู้ที่ไม่ต้องการ Animation
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .magic-old-image,
+    .magic-particle {
+        display: none !important;
+    }
+
+    .image-frame,
+    #instruction,
+    #progressBar {
+        animation: none !important;
+        transition: none !important;
+    }
+
+}
